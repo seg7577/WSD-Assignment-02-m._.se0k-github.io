@@ -1,6 +1,10 @@
 # 먼저 Angular를 설치해주세요!!
 npm install -g @angular/cli
 
+# 테스트트트트트
+
+# https://seg7577.github.io/WSD-Assignment-02-m._.se0k-github.io/
+
 # AngularDemo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.9.
