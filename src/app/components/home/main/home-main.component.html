@@ -1,13 +1,13 @@
 <div class="home" [@fancyEnter]>
   <app-banner [movie]="featuredMovie"></app-banner>
-<!-- 
+
   <app-movie-row title="인기 영화" [fetchUrl]="popularMoviesUrl"></app-movie-row>
   <app-movie-row title="최신 영화" [fetchUrl]="newReleasesUrl"></app-movie-row>
-  <app-movie-row title="액션 영화" [fetchUrl]="actionMoviesUrl"></app-movie-row> -->
-  <app-movie-row
-  *ngFor="let row of movieRows"
-  title="{{ row.title }}"
-  [fetchUrl]="row.fetchUrl"
-  [@rowHover]
-></app-movie-row>
+  <app-movie-row title="액션 영화" [fetchUrl]="actionMoviesUrl"></app-movie-row>
+  <!-- <app-movie-row
+    *ngFor="let row of movieRows"
+    title="{{ row.title }}"
+    [fetchUrl]="row.fetchUrl"
+    [@rowHover]>
+  </app-movie-row> -->
 </div>

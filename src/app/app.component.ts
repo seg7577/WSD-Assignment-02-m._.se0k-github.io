@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { trigger, transition, style, animate, group, query } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,32 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
   template: `
     <router-outlet></router-outlet>
   `,
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [
+    trigger('routeAnimations', [
+      transition('* <=> *', [
+        style({ position: 'relative' }),
+        query(':enter, :leave', [
+          style({
+            position: 'absolute',
+            width: '100%',
+            transform: 'rotateY(90deg)',
+            backfaceVisibility: 'hidden',
+            opacity: 0,
+          })
+        ], { optional: true }),
+        group([
+          query(':leave', [
+            animate('0.5s ease-out', style({ transform: 'rotateY(90deg)', opacity: 0 }))
+          ], { optional: true }),
+          query(':enter', [
+            style({ transform: 'rotateY(-90deg)' }),
+            animate('0.5s ease-out', style({ transform: 'rotateY(0)', opacity: 1 }))
+          ], { optional: true })
+        ])
+      ])
+    ])
+  ]
 })
 export class AppComponent {
   title = 'Angular-demo';

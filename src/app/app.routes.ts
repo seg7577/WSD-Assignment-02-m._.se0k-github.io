@@ -15,7 +15,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeMainComponent
+        component: HomeMainComponent, data: {animation: 'HomePage'}
       },
       {
         path: 'popular',
