@@ -15,14 +15,17 @@ const App = () => {
 
       {/* Routes로 SPA 방식의 라우팅 설정 */}
       <Routes>
-        {/* 루트 경로 */}
-        <Route path="/" element={<HomeMain />} />
-        
-        {/* 인기 콘텐츠 경로 */}
-        <Route path="/popular" element={<HomePopular />} />
+        {/* Home 컴포넌트를 부모로 설정 */}
+        <Route path="/" element={<Home />}>
+          {/* Home의 기본 자식 컴포넌트 */}
+          <Route index element={<HomeMain />} />
 
-        {/* 위시리스트 경로 */}
-        <Route path="/wishlist" element={<HomeWishlist />} />
+          {/* 인기 콘텐츠 경로 */}
+          <Route path="popular" element={<HomePopular />} />
+
+          {/* 위시리스트 경로 */}
+          <Route path="wishlist" element={<HomeWishlist />} />
+        </Route>
 
         {/* 로그인 페이지 */}
         <Route path="/signin" element={<SignIn />} />
