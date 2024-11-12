@@ -1,28 +1,34 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Home from './components/home/Home';
 import HomeMain from './components/home/main/HomeMain';
 import HomeWishlist from './components/home/wishlist/HomeWishlist';
 import HomePopular from './components/home/popular/HomePopular';
-import HomeSearch from './components/home/search/HomeSearch';
 import SignIn from './components/sign-in/SignIn';
 
 const App = () => {
-    return (
-      <Router>
-        <Routes>
-          {/* 부모 경로 */}
-          <Route path="/" element={<Home />}>
-            {/* 자식 경로 */}
-            <Route path="/" element={<HomeMain />} />
-            <Route path="popular" element={<HomePopular />} />
-            <Route path="wishlist" element={<HomeWishlist />} />
-            {/* <Route path="popular" element={<HomePopular />} /> */}
-          </Route>
-        </Routes>
-      </Router>
-    );
-  };
+  return (
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      {/* Header 컴포넌트는 모든 페이지에서 공통적으로 사용 */}
+      <Header />
+
+      {/* Routes로 SPA 방식의 라우팅 설정 */}
+      <Routes>
+        {/* 루트 경로 */}
+        <Route path="/" element={<HomeMain />} />
+        
+        {/* 인기 콘텐츠 경로 */}
+        <Route path="/popular" element={<HomePopular />} />
+
+        {/* 위시리스트 경로 */}
+        <Route path="/wishlist" element={<HomeWishlist />} />
+
+        {/* 로그인 페이지 */}
+        <Route path="/signin" element={<SignIn />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default App;
