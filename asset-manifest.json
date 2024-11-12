@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.56bce255.css",
-    "main.js": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.2eec6a4b.js",
-    "static/js/453.56d75c98.chunk.js": "/WSD-Assignment-02-m._.se0k-github.io/static/js/453.56d75c98.chunk.js",
-    "index.html": "/WSD-Assignment-02-m._.se0k-github.io/index.html",
-    "main.56bce255.css.map": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.56bce255.css.map",
-    "main.2eec6a4b.js.map": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.2eec6a4b.js.map",
-    "453.56d75c98.chunk.js.map": "/WSD-Assignment-02-m._.se0k-github.io/static/js/453.56d75c98.chunk.js.map"
+    "main.css": "/WSD-Assignment-02-m._.se0k-github.io/src/static/css/main.56bce255.css",
+    "main.js": "/WSD-Assignment-02-m._.se0k-github.io/src/static/js/main.98591fae.js",
+    "static/js/453.56d75c98.chunk.js": "/WSD-Assignment-02-m._.se0k-github.io/src/static/js/453.56d75c98.chunk.js",
+    "index.html": "/WSD-Assignment-02-m._.se0k-github.io/src/index.html",
+    "main.56bce255.css.map": "/WSD-Assignment-02-m._.se0k-github.io/src/static/css/main.56bce255.css.map",
+    "main.98591fae.js.map": "/WSD-Assignment-02-m._.se0k-github.io/src/static/js/main.98591fae.js.map",
+    "453.56d75c98.chunk.js.map": "/WSD-Assignment-02-m._.se0k-github.io/src/static/js/453.56d75c98.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.56bce255.css",
-    "static/js/main.2eec6a4b.js"
+    "static/js/main.98591fae.js"
   ]
 }
