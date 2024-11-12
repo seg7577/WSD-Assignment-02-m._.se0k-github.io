@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 import { AuthService } from '../util/auth/auth.service';
-
 interface AuthContextType {
   user: any;
   login: (email: string, password: string) => Promise<void>;
