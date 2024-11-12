@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/WSD-Assignment-02-m._.se0k-github.io/src/App/static/css/main.56bce255.css",
-    "main.js": "/WSD-Assignment-02-m._.se0k-github.io/src/App/static/js/main.e043b261.js",
+    "main.css": "/WSD-Assignment-02-m._.se0k-github.io/src/App/static/css/main.c477ab14.css",
+    "main.js": "/WSD-Assignment-02-m._.se0k-github.io/src/App/static/js/main.bd0e5bf6.js",
     "static/js/453.56d75c98.chunk.js": "/WSD-Assignment-02-m._.se0k-github.io/src/App/static/js/453.56d75c98.chunk.js",
     "index.html": "/WSD-Assignment-02-m._.se0k-github.io/src/App/index.html",
-    "main.56bce255.css.map": "/WSD-Assignment-02-m._.se0k-github.io/src/App/static/css/main.56bce255.css.map",
-    "main.e043b261.js.map": "/WSD-Assignment-02-m._.se0k-github.io/src/App/static/js/main.e043b261.js.map",
+    "main.c477ab14.css.map": "/WSD-Assignment-02-m._.se0k-github.io/src/App/static/css/main.c477ab14.css.map",
+    "main.bd0e5bf6.js.map": "/WSD-Assignment-02-m._.se0k-github.io/src/App/static/js/main.bd0e5bf6.js.map",
     "453.56d75c98.chunk.js.map": "/WSD-Assignment-02-m._.se0k-github.io/src/App/static/js/453.56d75c98.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.56bce255.css",
-    "static/js/main.e043b261.js"
+    "static/css/main.c477ab14.css",
+    "static/js/main.bd0e5bf6.js"
   ]
 }
