@@ -23,10 +23,6 @@ feature: 새로운 기능을 개발하는 브랜치
 
 hotfix: 출시된 제품의 버그를 고치기 위한 브랜치
 ---
-
-In the project directory, you can run:
----
-
 ## npm
 
 ### `npm start`
