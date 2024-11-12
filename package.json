@@ -1,5 +1,6 @@
 {
   "name": "was-assignment-02",
+  "homepage": "https://seg7577.github.io/WSD-Assignment-02-m._.se0k-github.io/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -42,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.2.0"
   }
 }
