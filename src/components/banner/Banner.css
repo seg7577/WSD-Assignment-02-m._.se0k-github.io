@@ -1,0 +1,97 @@
+.banner {
+  /* 배너 전체 영역 설정 */
+  height: 60vh; /* 화면 높이의 60% */
+  max-width: 95vw; /* 뷰포트 너비의 95% */
+  background-size: cover; /* 배경 이미지가 영역을 가득 채우도록 설정 */
+  background-position: center; /* 배경 이미지의 중심을 기준으로 위치 설정 */
+  color: white; /* 텍스트 색상을 흰색으로 설정 */
+  display: flex; /* 플렉스 컨테이너로 설정 */
+  align-items: flex-end; /* 플렉스 아이템을 컨테이너 하단에 정렬 */
+  margin-top: 50px; /* 상단 여백 추가 */
+}
+
+.banner-content {
+  /* 배너 내부 텍스트와 버튼을 포함하는 콘텐츠 영역 */
+  padding: 50px; /* 내부 여백 */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  /* 상단으로 투명해지는 그라데이션 배경 */
+  width: 100%; /* 콘텐츠가 배너의 전체 너비를 차지하도록 설정 */
+  box-sizing: border-box; /* padding을 포함한 전체 크기 계산 */
+  display: flex; /* 플렉스 컨테이너로 설정 */
+  flex-direction: column; /* 플렉스 아이템을 세로 방향으로 정렬 */
+  align-items: flex-start; /* 왼쪽 정렬 */
+}
+
+.banner h1 {
+  /* 배너 제목 스타일 */
+  font-size: 3rem; /* 제목 크기 */
+  margin-bottom: 0.5rem; /* 제목과 아래 콘텐츠 사이의 간격 */
+}
+
+.banner p {
+  /* 배너 설명 스타일 */
+  font-size: 1rem; /* 설명 텍스트 크기 */
+  max-width: 500px; /* 텍스트의 최대 너비 */
+  margin-bottom: 1rem; /* 텍스트와 버튼 사이의 간격 */
+  text-align: left; /* 텍스트 왼쪽 정렬 */
+}
+
+.play-btn, .info-btn {
+  /* 버튼 스타일 */
+  padding: 10px 20px; /* 버튼의 내부 여백 */
+  margin-right: 10px; /* 버튼 사이의 간격 */
+  border: none; /* 테두리 제거 */
+  border-radius: 5px; /* 버튼 모서리 둥글게 설정 */
+  font-size: 1rem; /* 버튼 텍스트 크기 */
+  cursor: pointer; /* 마우스 커서가 포인터로 변경 */
+}
+
+.play-btn {
+  /* 재생 버튼 스타일 */
+  background-color: white; /* 흰색 배경 */
+  color: black; /* 검은색 텍스트 */
+}
+
+.info-btn {
+  /* 상세 정보 버튼 스타일 */
+  background-color: rgba(109, 109, 110, 0.7); /* 반투명 회색 배경 */
+  color: white; /* 흰색 텍스트 */
+}
+
+.title-btn {
+  /* 모든 버튼에 공통으로 적용되는 추가 스타일 */
+  margin-top: 5px; /* 버튼 위쪽 간격 */
+  width: 150px; /* 버튼 너비 */
+}
+
+/* 화면 높이가 768px 이하일 때 적용되는 스타일 */
+@media screen and (max-height: 768px) {
+  .banner h1 {
+      font-size: 2.5rem; /* 제목 크기 축소 */
+      margin-bottom: 0.5rem; /* 제목 간격 유지 */
+  }
+
+  .banner-content {
+      padding: 15px; /* 내부 여백 축소 */
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+      /* 동일한 그라데이션 배경 */
+      width: 100%; /* 전체 너비 유지 */
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .banner p {
+      font-size: 0.9rem; /* 설명 텍스트 크기 축소 */
+      max-width: 500px;
+      margin-bottom: 1rem;
+      text-align: left;
+  }
+
+  .title-btn {
+      margin-top: 5px; /* 버튼 위쪽 간격 유지 */
+      width: 100px; /* 버튼 너비 축소 */
+      font-size: 0.75rem; /* 버튼 텍스트 크기 축소 */
+  }
+}

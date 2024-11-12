@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/layout/Header';
+import Home from './components/home/Home';
+import HomeMain from './components/home/main/HomeMain';
+import HomeWishlist from './components/home/wishlist/HomeWishlist';
+import HomePopular from './components/home/popular/HomePopular';
+import HomeSearch from './components/home/search/HomeSearch';
+import SignIn from './components/sign-in/SignIn';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    return (
+      <Router>
+        <Routes>
+          {/* 부모 경로 */}
+          <Route path="/" element={<Home />}>
+            {/* 자식 경로 */}
+            <Route path="/" element={<HomeMain />} />
+            <Route path="popular" element={<HomePopular />} />
+            <Route path="wishlist" element={<HomeWishlist />} />
+            {/* <Route path="popular" element={<HomePopular />} /> */}
+          </Route>
+        </Routes>
+      </Router>
+    );
+  };
 
 export default App;

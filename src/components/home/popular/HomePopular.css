@@ -1,0 +1,26 @@
+.view-toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 50px;
+  }
+  
+  .view-toggle button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .view-toggle button.active {
+    background-color: #535bf2;
+  }
+  
+  @media (max-width: 768px) {
+    .view-toggle {
+      margin-top: 80px;
+    }
+  }
+  

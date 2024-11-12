@@ -1,0 +1,29 @@
+#app {
+    width: 95vw;
+    height: 95vh;
+    overflow-x: hidden;
+    margin: auto;
+    background: #202020;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    animation: appAppear 1s ease-in-out;
+  }
+  
+  @keyframes appAppear {
+    0% {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  #container {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+  }
+  
