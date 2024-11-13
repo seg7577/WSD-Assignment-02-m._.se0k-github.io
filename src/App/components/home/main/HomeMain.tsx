@@ -45,7 +45,7 @@ const HomeMain = () => {
       {/* 영화 슬라이더 컴포넌트 */}
       {/* 인기 영화 슬라이더 */}
       <MovieRow
-        title="인기 영화"                // 섹션 제목: '인기 영화'
+        title="인기 영화"                 // 섹션 제목: '인기 영화'
         fetchUrl={popularMoviesUrl}     // 인기 영화를 가져오는 API URL
         getImageUrl={getImageUrl}       // 영화 이미지 URL을 생성하는 함수
         toggleWishlist={toggleWishlist} // 위시리스트에 추가/제거하는 함수

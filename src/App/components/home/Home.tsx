@@ -2,7 +2,7 @@ import React from 'react'; // React 라이브러리를 가져옵니다.
 import Header from '../layout/Header'; // 헤더 컴포넌트를 가져옵니다.
 import HomeMain from './main/HomeMain'; // 홈 메인 컴포넌트를 가져옵니다.
 import './Home.css'; // Home 컴포넌트의 스타일을 정의한 CSS 파일을 가져옵니다.
-
+import '../movie-row/MovieRow';
 const Home = () => {
   return (
     <div id="app"> 
