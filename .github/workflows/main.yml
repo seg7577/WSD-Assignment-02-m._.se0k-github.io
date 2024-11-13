@@ -1,0 +1,42 @@
+name: main
+
+on:
+  push:
+    branches:
+      - main  # develop 브랜치에 푸시될 때 트리거
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Repository 코드 체크아웃
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # 2. Node.js 환경 설정
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16  # 원하는 Node.js 버전 선택
+
+      # 3. 의존성 설치
+      - name: Install Dependencies
+        run: npm install
+
+      # 4. 빌드 실행
+      - name: Build Project
+        run: npm run deploy
+        env:
+          CI: false
+
+      # 5. 빌드 결과를 GitHub Pages에 임시 배포 (프리뷰)
+      - name: Deploy gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build  # 빌드된 폴더 지정
+
+      # 6. GitHub Actions 출력 URL
+      - name: Output Preview URL
+        run: echo "https://seg7577.github.io/WSD-Assignment-02-m._.se0k-github.io/"
