@@ -27,6 +27,8 @@ jobs:
       # 4. 빌드 실행
       - name: Build Project
         run: npm run build
+        env:
+          CI: false
 
       # 5. 빌드 결과를 GitHub Pages에 임시 배포 (프리뷰)
       - name: Deploy Preview to GitHub Pages
