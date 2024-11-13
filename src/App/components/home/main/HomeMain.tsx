@@ -34,7 +34,6 @@ const HomeMain = () => {
   const isInWishlist = (id: number) => {
     return false; // 위시리스트 로직에 따라 구현 필요
   };
-
   return (
     <div className="home-main">
       {/* 홈 메인 컴포넌트를 감싸는 컨테이너 */}
@@ -72,6 +71,7 @@ const HomeMain = () => {
       />
     </div>
   );
+  
 };
 
 export default HomeMain;
