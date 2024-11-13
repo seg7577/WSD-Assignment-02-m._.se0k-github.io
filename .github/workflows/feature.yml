@@ -1,9 +1,10 @@
-name: develop
+name: feature/Branch
 
 on:
   push:
     branches:
-      - develop  # develop 브랜치에 푸시될 때 트리거
+      - feature
+      - feature/homeMain  # develop 브랜치에 푸시될 때 트리거
 
 jobs:
   preview:
