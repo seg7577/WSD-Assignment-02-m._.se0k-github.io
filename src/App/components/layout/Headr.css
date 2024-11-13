@@ -30,10 +30,12 @@ html, body {
 .header-left {
   display: flex;
   align-items: center;
+  gap: 20px; /* 로고와 네비게이션 링크 간 간격 */
 }
 
 .logo {
   height: 40px;
+  font-size: 2rem; /* 텍스트 기반 아이콘 크기 */
   display: flex;
   align-items: center;
 }
