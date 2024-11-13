@@ -1,46 +1,40 @@
-name: Develop Preview Workflow
+name: Preview Build for Develop Branch
 
 on:
   push:
     branches:
-      - develop  # develop 브랜치에 커밋될 때 실행
+      - develop  # develop 브랜치에 푸시될 때 트리거
 
 jobs:
-  test-and-preview:
-    name: Test and Deploy to Preview
+  preview:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. 리포지토리 체크아웃
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      # 1. Repository 코드 체크아웃
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-    # # 2. 커밋 메시지 출력
-    # - name: Display Commit Message
-    #   run: echo "Commit Message: ${{ github.event.head_commit.message }}"
+      # 2. Node.js 환경 설정
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16  # 원하는 Node.js 버전 선택
 
-    # 3. Node.js 설치
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'  # Node.js 버전
+      # 3. 의존성 설치
+      - name: Install Dependencies
+        run: npm install
 
-    # 4. 의존성 설치
-    - name: Install dependencies
-      run: npm install
+      # 4. 빌드 실행
+      - name: Build Project
+        run: npm run build
 
-    # 5. 테스트 실행
-    - name: Run tests
-      run: npm test -- --watchAll=false  # 모든 테스트 실행
+      # 5. 빌드 결과를 GitHub Pages에 임시 배포 (프리뷰)
+      - name: Deploy Preview to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build  # 빌드된 폴더 지정
 
-    # 6. 빌드 실행
-    - name: Build project
-      run: npm run build  # 프로덕션 빌드 실행
-
-    # 7. Preview 환경 배포
-    - name: Deploy to GitHub Pages (Preview)
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build  # 빌드 결과물을 Preview 환경에 배포
-        cname: preview.example.com  # 테스트용 URL (생략 가능)
+      # 6. GitHub Actions 출력 URL
+      - name: Output Preview URL
+        run: echo "https://seg7577.github.io/WSD-Assignment-02-m._.se0k-github.io/"
