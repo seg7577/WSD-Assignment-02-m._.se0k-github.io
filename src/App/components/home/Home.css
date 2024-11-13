@@ -1,14 +1,15 @@
 #app {
-    width: 95vw;
-    height: 95vh;
-    overflow-x: hidden;
-    margin: auto;
-    background: #202020;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-    animation: appAppear 1s ease-in-out;
-  }
+  width: 100vw; /* 뷰포트 전체 너비 사용 */
+  height: 100vh; /* 뷰포트 전체 높이 사용 */
+  overflow-x: hidden;
+  margin: 0; /* 자동 여백 제거 */
+  padding: 0; /* 내부 여백 제거 */
+  background: #202020;
+  border-radius: 0; /* 테두리 모양 제거 (필요 시) */
+  box-shadow: none; /* 박스 그림자 제거 (필요 시) */
+  animation: appAppear 1s ease-in-out;
+}
+
   
   @keyframes appAppear {
     0% {
@@ -22,7 +23,7 @@
   }
   
   #container {
-    padding: 10px;
+    padding: 0px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
   }
