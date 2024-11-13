@@ -26,7 +26,7 @@ jobs:
 
       # 4. 빌드 실행
       - name: Build Project
-        run: npm run deploy
+        run: npm run build
         env:
           CI: false
 
