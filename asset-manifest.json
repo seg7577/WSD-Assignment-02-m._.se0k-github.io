@@ -1,15 +1,23 @@
 {
   "files": {
-    "main.css": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.56bce255.css",
-    "main.js": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.0b446132.js",
+    "main.css": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.59bea37e.css",
+    "main.js": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.184027e6.js",
     "static/js/453.56d75c98.chunk.js": "/WSD-Assignment-02-m._.se0k-github.io/static/js/453.56d75c98.chunk.js",
+    "static/media/fa-solid-900.ttf": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-solid-900.07ed6d5fa32c1d54af0f.ttf",
+    "static/media/fa-brands-400.ttf": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-brands-400.0ff70dcbf135d859ebf3.ttf",
+    "static/media/fa-solid-900.woff2": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-solid-900.93f719f4d62bfa3e748c.woff2",
+    "static/media/fa-brands-400.woff2": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-brands-400.bb8d5a145e22822103fb.woff2",
+    "static/media/fa-regular-400.ttf": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-regular-400.17a6e1aebccdbaa39e78.ttf",
+    "static/media/fa-regular-400.woff2": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-regular-400.bc3722686635b5f86132.woff2",
+    "static/media/fa-v4compatibility.ttf": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-v4compatibility.0f6cb412603527bda691.ttf",
+    "static/media/fa-v4compatibility.woff2": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-v4compatibility.6cfec8414be20e2c3426.woff2",
     "index.html": "/WSD-Assignment-02-m._.se0k-github.io/index.html",
-    "main.56bce255.css.map": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.56bce255.css.map",
-    "main.0b446132.js.map": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.0b446132.js.map",
+    "main.59bea37e.css.map": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.59bea37e.css.map",
+    "main.184027e6.js.map": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.184027e6.js.map",
     "453.56d75c98.chunk.js.map": "/WSD-Assignment-02-m._.se0k-github.io/static/js/453.56d75c98.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.56bce255.css",
-    "static/js/main.0b446132.js"
+    "static/css/main.59bea37e.css",
+    "static/js/main.184027e6.js"
   ]
 }
