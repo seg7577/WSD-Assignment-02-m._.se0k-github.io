@@ -29,8 +29,12 @@ jobs:
         run: npm run build
         env:
           CI: false
-
-      # 5. 빌드 결과를 GitHub Pages에 임시 배포 (프리뷰)
+          
+      # 5. npm deploy 사용
+      - name: Deploy using npm script
+        run: npm run deploy
+      
+      # 5. 빌드 결과를 GitHub Pages에 배포
       - name: Deploy gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -38,5 +42,5 @@ jobs:
           publish_dir: ./build  # 빌드된 폴더 지정
 
       # 6. GitHub Actions 출력 URL
-      - name: Output Preview URL
+      - name: Output URL
         run: echo "https://seg7577.github.io/WSD-Assignment-02-m._.se0k-github.io/"
