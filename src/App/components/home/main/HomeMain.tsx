@@ -3,7 +3,11 @@ import React from 'react';
 import Banner from '../../banner/Banner';
 import MovieRow from '../../movie-row/MovieRow';
 import './HomeMain.css'; // 스타일 가져오기
+<<<<<<< HEAD
 //develop.yml 확인용
+=======
+//homeMain branch create
+>>>>>>> feature/homeMain
 const HomeMain = () => {
   // 배너에 표시할 대표 영화 데이터
   const featuredMovie = {
