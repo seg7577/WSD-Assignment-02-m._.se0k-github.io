@@ -42,4 +42,4 @@ jobs:
 
       # 7. GitHub Actions 출력 URL
       - name: Output Preview URL
-        run: echo "Preview available at: https://<GitHub-Username>.github.io/<Repository-Name>/preview/develop"
+        run: echo "Preview available at: https://seg7577.github.io/WSD-Assignment-02-m._.se0k-github.io/preview/develop"
