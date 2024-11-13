@@ -1,9 +1,17 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .home {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    animation: fadeIn 1.5s ease-in-out;
-  }
+  width: 100%; /* 전체 화면 너비 */
+  max-width: none; /* 최대 너비 제한 해제 */
+  margin: 0; /* 좌우 여백 제거 */
+  padding: 0; /* 내부 여백 제거 */
+  animation: fadeIn 1.5s ease-in-out;
+
+
   
   @keyframes fadeIn {
     0% {
@@ -34,4 +42,4 @@
     transition: transform 0.3s ease;
     box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
   }
-  
+}
