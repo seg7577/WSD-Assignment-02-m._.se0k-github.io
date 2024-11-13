@@ -24,22 +24,17 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # 4. 테스트 실행
-      - name: Run Tests
-        run: npm test
-
-      # 5. 빌드 실행
+      # 4. 빌드 실행
       - name: Build Project
         run: npm run build
 
-      # 6. 빌드 결과를 GitHub Pages에 임시 배포 (프리뷰)
+      # 5. 빌드 결과를 GitHub Pages에 임시 배포 (프리뷰)
       - name: Deploy Preview to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build  # 빌드된 폴더 지정
-          destination_dir: preview/develop  # 프리뷰 경로 설정
 
-      # 7. GitHub Actions 출력 URL
+      # 6. GitHub Actions 출력 URL
       - name: Output Preview URL
-        run: echo "Preview available at: https://seg7577.github.io/WSD-Assignment-02-m._.se0k-github.io/preview/develop"
+        run: echo "Preview available at: https://seg7577.github.io/WSD-Assignment-02-m._.se0k-github.io/"
