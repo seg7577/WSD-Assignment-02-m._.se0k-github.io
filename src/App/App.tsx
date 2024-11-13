@@ -6,6 +6,8 @@ import HomeMain from './components/home/main/HomeMain';
 import HomeWishlist from './components/home/wishlist/HomeWishlist';
 import HomePopular from './components/home/popular/HomePopular';
 import SignIn from './components/sign-in/SignIn';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const App = () => {
   return (
