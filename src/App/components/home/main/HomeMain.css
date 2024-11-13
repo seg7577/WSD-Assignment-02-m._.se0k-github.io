@@ -1,3 +1,9 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .home {
   width: 100%; /* 전체 화면 너비 */
   max-width: none; /* 최대 너비 제한 해제 */
