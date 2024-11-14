@@ -26,11 +26,10 @@ const App = () => {
 
           {/* 위시리스트 경로 */}
           <Route path="wishlist" element={<HomeWishlist />} />
+           {/* 로그인 페이지 */}
         </Route>
-
-      {/* 로그인 페이지 */}
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );
