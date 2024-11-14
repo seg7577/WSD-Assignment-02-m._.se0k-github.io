@@ -1,4 +1,5 @@
 .wishlist-indicator {
+  overflow: visible;  
   position: absolute;
   top: 5px;
   right: 5px;
@@ -10,15 +11,18 @@
 }
 
 .movie-row {
-  display: block;
-  margin-bottom: 40px;
-  position: relative;
-  width: 100%;
-  color: white; /* 제목 색상을 명시적으로 설정 */
-  font-size: 1.5rem; /* 적절한 크기로 설정 */
+  overflow: visible;  
+  color: white; /* 글씨를 흰색으로 설정 */
+  font-size: 1.5rem; /* 적절한 글꼴 크기 설정 */
+  margin-left: 20px; /* 제목의 왼쪽 여백 추가 */
+  margin-bottom: 10px; /* 아래쪽 여백 추가 */
+  position: relative; /* 다른 요소 위에 표시되도록 설정 */
+  z-index: 10; /* z-index 설정 */
 }
 
 .movie-row h2 {
+  
+  overflow: visible;  
   color: white; /* 글씨를 흰색으로 설정 */
   font-size: 1.5rem; /* 적절한 글꼴 크기 설정 */
   margin-left: 20px; /* 제목의 왼쪽 여백 추가 */
@@ -28,13 +32,13 @@
 }
 
 .slider-container {
+  overflow: visible;  
   position: relative;
-  overflow: visible; /* 버튼이 숨겨지지 않도록 설정 */
   touch-action: pan-y;
 }
 
 .slider-window {
-  overflow: hidden;
+  overflow: visible;  
   margin: 0 40px;
 }
 
@@ -63,8 +67,12 @@
   border-radius: 4px;
 }
 
-.slider-button {
-  position: relative;
+.slider-button-left,
+.slider-button-right{
+  width: 50px;
+  height: 50px;
+  opacity: 1;
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.5);
@@ -72,25 +80,29 @@
   border: none;
   padding: 20px 10px;
   cursor: pointer;
-  z-index: 10;
-  transition: opacity 0.3s, background-color 0.3s;
+  z-index: 100;
+  transition: opacity 1s, background-color 1s;
 }
-
-.slider-button:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
+/* 왼쪽 버튼 위치 */
 .slider-button-left {
-  left: 0;
+  left: 10px; /* 왼쪽에서 약간 떨어진 위치 */
 }
 
+/* 오른쪽 버튼 위치 */
 .slider-button-right {
-  right: 0;
+  right: 10px; /* 오른쪽에서 약간 떨어진 위치 */
 }
 
-.slider-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+/* 버튼 활성화 */
+.slider-container:hover .slider-button-left,
+.slider-container:hover .slider-button-right {
+  opacity: 1; /* 슬라이더 위에 마우스가 있을 때 버튼 표시 */
+}
+
+/* 버튼 호버 스타일 */
+.slider-button-left:hover,
+.slider-button-right:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* 버튼 호버 시 더 어두운 배경 */
 }
 
 @media (max-width: 768px) {

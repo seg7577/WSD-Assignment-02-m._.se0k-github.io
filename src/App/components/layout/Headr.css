@@ -39,6 +39,22 @@ html, body {
   display: flex;
   align-items: center;
 }
+/* 버튼 스타일 */
+.icon-button {
+  background: none; /* 배경색 제거 */
+  border: none; /* 테두리 제거 */
+  padding: 0; /* 기본 여백 제거 */
+  cursor: pointer; /* 마우스 포인터 변경 */
+  display: flex; /* 아이콘을 정렬할 수 있도록 flex 사용 */
+  justify-content: center; /* 중앙 정렬 */
+  align-items: center; /* 중앙 정렬 */
+}
+
+/* 아이콘 스타일 */
+.icon-button i {
+  color: white; /* 아이콘 색상을 흰색으로 변경 */
+  font-size: 1.5rem; /* 아이콘 크기 조절 (필요에 따라 변경) */
+}
 
 /* 네비게이션 링크 */
 .nav-links ul {
