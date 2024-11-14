@@ -15,7 +15,7 @@ const App = () => {
       {/* Header 컴포넌트는 모든 페이지에서 공통적으로 사용 */}
       <Header />
 
-      {/* Routes로 SPA 방식의 라우팅 설정 */}
+      {/* Routes로 SPA 방식의 라우팅 설정 reset 성공!*/}
       <Routes>
         {/* Home 컴포넌트를 부모로 설정 */}
         <Route path="/" element={<Home />}>
