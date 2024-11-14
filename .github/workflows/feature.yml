@@ -5,6 +5,7 @@ on:
     branches:
       - feature
       - feature/homeMain  # develop 브랜치에 푸시될 때 트리거
+      - feature/signIn
 
 jobs:
   preview:

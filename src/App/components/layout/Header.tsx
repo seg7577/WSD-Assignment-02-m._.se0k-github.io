@@ -56,9 +56,7 @@ const Header = () => {
           <button className="icon-button" onClick={removeKey}> {/* 로그아웃 버튼 */}
             <i className="fas fa-user"></i> {/* 사용자 아이콘 */}
           </button>
-          <button className="icon-button mobile-menu-button" onClick={toggleMobileMenu}> {/* 모바일 메뉴 버튼 */}
-            <i className="fas fa-bars"></i> {/* 햄버거 아이콘 */}
-          </button>
+
         </div>
       </header>
 
