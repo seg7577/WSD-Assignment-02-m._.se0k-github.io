@@ -55,9 +55,7 @@ const MovieRow = ({
       <h2>{title}</h2>
       <div className="slider-container">
         {/* 왼쪽 이동 버튼 */}
-        <button className="slider-button-left" 
-        onClick={() => slide('left')}>&lt; {/* 왼쪽 화살표 */}
-        </button>
+        <button className="slider-button-left" onClick={() => slide('left')}>&lt; {/* 왼쪽 화살표 */}</button>
         {/* 슬라이더 창 */}
         <div className="slider-window">
           <div className="movie-slider" ref={sliderRef}>
@@ -81,12 +79,7 @@ const MovieRow = ({
           </div>
         </div>
         {/* 오른쪽 이동 버튼 */}
-        <button
-          className="slider-button-right"
-          onClick={() => slide('right')} // 클릭 시 슬라이더를 오른쪽으로 이동
-        >
-          &gt; {/* 오른쪽 화살표 */}
-        </button>
+        <button className="slider-button-right" onClick={() => slide('right')}>&gt; {/* 오른쪽 화살표 */}</button>
       </div>
     </div>
   );
