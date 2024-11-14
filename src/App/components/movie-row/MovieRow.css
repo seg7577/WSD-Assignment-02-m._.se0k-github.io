@@ -10,7 +10,17 @@
   font-size: 12px;
 }
 
-.movie-row {
+.movie-row{
+    color: #fff;
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    overflow: visible;
+    position: relative;
+    z-index: 10;
+}
+.movie-row h2 {
   overflow: visible;  
   color: white; /* 글씨를 흰색으로 설정 */
   font-size: 1.5rem; /* 적절한 글꼴 크기 설정 */
@@ -19,32 +29,38 @@
   position: relative; /* 다른 요소 위에 표시되도록 설정 */
   z-index: 10; /* z-index 설정 */
 }
-
-.movie-row h2 {
-  
-  overflow: visible;  
-  color: white; /* 글씨를 흰색으로 설정 */
-  font-size: 1.5rem; /* 적절한 글꼴 크기 설정 */
+.title-container {
+  display: block; /* 블록 형식 지정 */
+  font-size: 3rem; /* 적절한 글꼴 크기 설정 */
   margin-left: 20px; /* 제목의 왼쪽 여백 추가 */
   margin-bottom: 10px; /* 아래쪽 여백 추가 */
-  position: relative; /* 다른 요소 위에 표시되도록 설정 */
-  z-index: 10; /* z-index 설정 */
+  margin-top: 10px;
+  margin-bottom: -40px;
+  width: 80%; /* 너비 지정 */
+  text-align: left; /* 텍스트 가운데 정렬 */
+}
+
+h2 {
+  margin: 0; /* 기본 마진 제거 */
+  font-size: 24px; /* 폰트 크기 조정 */
 }
 
 .slider-container {
-  overflow: visible;  
+  overflow: hidden;  
   position: relative;
   touch-action: pan-y;
+  margin: 0px 40px;
 }
 
 .slider-window {
-  overflow: visible;  
-  margin: 0 40px;
+  overflow: hidden;  
+  margin: 0 100px;
 }
 
 .movie-slider {
   display: flex;
   transition: transform 0.3s ease;
+  margin: 20px 20px;
   padding: 20px 0;
 }
 
@@ -69,6 +85,7 @@
 
 .slider-button-left,
 .slider-button-right{
+  display: inline-flex;
   width: 50px;
   height: 50px;
   opacity: 1;
@@ -78,9 +95,9 @@
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  padding: 20px 10px;
+  padding: 20px;
   cursor: pointer;
-  z-index: 100;
+  z-index: 1;
   transition: opacity 1s, background-color 1s;
 }
 /* 왼쪽 버튼 위치 */

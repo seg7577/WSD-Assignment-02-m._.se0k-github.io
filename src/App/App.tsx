@@ -7,8 +7,7 @@ import HomeWishlist from './components/home/wishlist/HomeWishlist';
 import HomePopular from './components/home/popular/HomePopular';
 import SignIn from './components/sign-in/SignIn';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
-
+import SignUp from './components/sign-up/SignUp';
 const App = () => {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
@@ -31,9 +30,9 @@ const App = () => {
 
       {/* 로그인 페이지 */}
       <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );
 };
-
 export default App;

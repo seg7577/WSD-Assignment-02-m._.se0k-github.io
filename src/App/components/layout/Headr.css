@@ -39,6 +39,7 @@ html, body {
   display: flex;
   align-items: center;
 }
+
 /* 버튼 스타일 */
 .icon-button {
   background: none; /* 배경색 제거 */
