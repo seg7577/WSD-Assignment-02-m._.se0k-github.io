@@ -29,8 +29,8 @@ const App = () => {
           <Route path="wishlist" element={<HomeWishlist />} />
         </Route>
 
-        {/* 로그인 페이지 */}
-        <Route path="/signin" element={<SignIn />} />
+      {/* 로그인 페이지 */}
+      <Route path="/signin" element={<SignIn />} />
       </Routes>
     </BrowserRouter>
   );
