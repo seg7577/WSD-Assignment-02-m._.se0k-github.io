@@ -39,6 +39,9 @@ const SignUp = () => {
   return (
     <div>
       <div className="container">
+        <div className="bg-image">
+            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1450&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"></img>
+        </div>
         <div className="card">
           <h1>Sign Up</h1>
           <form onSubmit={handleRegister}>
@@ -50,7 +53,7 @@ const SignUp = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <label>Email</label>
+              <label></label>
             </div>
             <div className="input">
               <input
@@ -60,7 +63,7 @@ const SignUp = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <label>Password</label>
+              <label></label>
             </div>
             <div className="input">
               <input
@@ -70,7 +73,7 @@ const SignUp = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
-              <label>Confirm Password</label>
+              <label></label>
             </div>
             <div className="checkbox">
               <input
