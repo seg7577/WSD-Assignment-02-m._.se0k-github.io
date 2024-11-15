@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'; // React와 필요한 Hooks(useState, useEffect) 가져오기
-import { Link, useNavigate} from 'react-router-dom'; // 페이지 이동을 위한 React Router의 Link 컴포넌트 가져오기
+import { Link, useNavigate } from 'react-router-dom'; // 페이지 이동을 위한 React Router의 Link 컴포넌트 가져오기
 import './Headr.css'; // 헤더 스타일을 정의한 CSS 파일 가져오기
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
@@ -8,12 +8,8 @@ const Header = () => {
   // 상태 관리: 스크롤 여부와 모바일 메뉴 열림 여부를 관리
   const [isScrolled, setIsScrolled] = useState(false); // 헤더가 스크롤에 따라 스타일을 변경하기 위한 상태
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // 모바일 메뉴가 열려 있는지 여부를 저장
-  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 관리
-
-  const handleIconClick  = () => {
-    navigate('/signin');
-  };
+  const navigate = useNavigate(); // 페이지 전환을 위한 useNavigate
 
   // 스크롤 이벤트 핸들링
   useEffect(() => {
@@ -21,15 +17,12 @@ const Header = () => {
       setIsScrolled(window.scrollY > 50); // 스크롤 위치가 50px 이상이면 isScrolled를 true로 설정
     };
 
-    
-    window.addEventListener('scroll', handleScroll);
     // 컴포넌트가 마운트될 때 이벤트 리스너 등록
-
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+      window.removeEventListener('scroll', handleScroll);
     };
-    
   }, []);
 
   // 모바일 메뉴 열고 닫기 토글 함수
@@ -37,12 +30,21 @@ const Header = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen); // 현재 상태의 반대값으로 업데이트
   };
 
-  //로그아웃 처리
+  // 로그아웃 처리
   const handleLogout = () => {
     setIsLoggedIn(false); // 로그인 상태를 false로 변경
-    console.log('User logged out'); // 로그아웃 메시지 출력 (실제 로그아웃 로직 추가 필요)
+    alert('로그아웃 되었습니다.'); // 팝업 메시지 표시
+    navigate('/'); // 홈 화면으로 이동
   };
-
+  
+  // 사용자 아이콘 클릭 처리
+  const handleIconClick = () => {
+    if (isLoggedIn) {
+      handleLogout(); // 로그인 상태일 경우 로그아웃
+    } else {
+      navigate('/signin'); // 비로그인 상태일 경우 로그인 페이지로 이동
+    }
+  };
 
   // JSX 반환
   return (
@@ -64,14 +66,14 @@ const Header = () => {
           </nav>
         </div>
         <div className="header-right"> {/* 헤더 오른쪽 영역 */}
-          <button className="icon-button" onClick={handleIconClick}> {/* 로그아웃 버튼 */}
-            <i className="fas fa-user"
-              style={{
-              color: isLoggedIn ? 'red' : 'white', // 로그인 상태에 따라 색상 변경
-              }}
-            ></i> {/* 사용자 아이콘 */}
+          <button
+            className="login-logout-button"
+            onClick={handleIconClick}>
+            {isLoggedIn ? '로그아웃' : '로그인'} {/* 상태에 따라 버튼 텍스트 변경 */}
           </button>
-
+          <button className="icon-button" onClick={handleIconClick}> {/* 사용자 프로필 이동 버튼 */}
+            <i className="fas fa-user"></i> {/* 사용자 아이콘 */}
+          </button>
         </div>
       </header>
 
