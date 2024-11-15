@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 import { AuthService } from '../util/auth/auth.service';
+
 interface AuthContextType {
   user: any;
   login: (email: string, password: string) => Promise<void>;
@@ -7,35 +8,23 @@ interface AuthContextType {
   logout: () => void;
 }
 
-interface AuthProviderProps {
-  children: ReactNode; // ReactNode는 JSX에서 사용할 수 있는 모든 요소를 포함
-}
-
 const AuthContext = createContext<AuthContextType | null>(null);
 
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<any>(null);
 
   const login = async (email: string, password: string) => {
-    try {
-      const loggedInUser = await AuthService.tryLogin(email, password);
-      setUser(loggedInUser);
-    } catch (error) {
-      throw error;
-    }
+    const loggedInUser = await AuthService.tryLogin(email, password);
+    setUser(loggedInUser); // 로그인 성공 시 사용자 정보 저장
   };
 
   const register = async (email: string, password: string) => {
-    try {
-      await AuthService.tryRegister(email, password);
-    } catch (error) {
-      throw error;
-    }
+    await AuthService.tryRegister(email, password);
   };
 
   const logout = () => {
-    localStorage.removeItem('TMDb-Key');
-    setUser(null);
+    localStorage.removeItem('TMDb-Key'); // 로컬 스토리지에서 키 삭제
+    setUser(null); // 사용자 정보 제거
   };
 
   return (

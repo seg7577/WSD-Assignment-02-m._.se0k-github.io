@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // 페이지 전환을 위한 useNavigate
 import './SignIn.css';
 import { AuthService } from '../../util/auth/auth.service'; // AuthService 가져오기
+import { useAuth } from '../../context/AuthContext'; // AuthContext 가져오기
+
 
 const SignIn = () => {
   const navigate = useNavigate(); // 페이지 전환을 위한 useNavigate
@@ -10,6 +12,7 @@ const SignIn = () => {
   const [rememberMe, setRememberMe] = useState(false); // "Remember me" 체크박스 상태
   const [error, setError] = useState(''); // 에러 메시지 상태
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태
+  const {login} = useAuth();
 
   // 로그인 폼 제출 처리
   const handleLogin = async (event: React.FormEvent) => {
@@ -19,7 +22,7 @@ const SignIn = () => {
 
     try {
       // AuthService의 로그인 메서드 호출
-      await AuthService.tryLogin(email, password, rememberMe);
+      await login(email, password);
       console.log('Login successful'); // 성공 로그
       navigate('/'); // 로그인 성공 시 메인 페이지로 이동
     } catch (err) {
@@ -44,7 +47,7 @@ const SignIn = () => {
             <div className="card" id="login">
               <form onSubmit={handleLogin}>
                 <h1>Sign in</h1>
-                <div className="input">
+                <div className="input">{/* 이메일 입력 필드 */}
                   <input
                     id="email"
                     type="email"
@@ -54,7 +57,7 @@ const SignIn = () => {
                   />
                   <label htmlFor="email">Username or Email</label>
                 </div>
-                <div className="input">
+                <div className="input"> {/*비밀번호 입력 필드 */}
                   <input
                     id="password"
                     type="password"
@@ -64,7 +67,7 @@ const SignIn = () => {
                   />
                   <label htmlFor="password">Password</label>
                 </div>
-                <span className="checkbox remember">
+                <span className="checkbox remember"> {/* 약관 동의 필드 */}
                   <input
                     type="checkbox"
                     id="remember"

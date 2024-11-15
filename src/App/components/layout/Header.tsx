@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'; // React와 필요한 Hooks(
 import { Link, useNavigate } from 'react-router-dom'; // 페이지 이동을 위한 React Router의 Link 컴포넌트 가져오기
 import './Headr.css'; // 헤더 스타일을 정의한 CSS 파일 가져오기
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import {useAuth} from '../../context/AuthContext';
 
 const Header = () => {
   // 상태 관리: 스크롤 여부와 모바일 메뉴 열림 여부를 관리
   const [isScrolled, setIsScrolled] = useState(false); // 헤더가 스크롤에 따라 스타일을 변경하기 위한 상태
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // 모바일 메뉴가 열려 있는지 여부를 저장
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 관리
   const navigate = useNavigate(); // 페이지 전환을 위한 useNavigate
+  const { user, logout } = useAuth(); // Context에서 user와 logout 함수 사용
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 관리
 
   // 스크롤 이벤트 핸들링
   useEffect(() => {
@@ -30,17 +31,14 @@ const Header = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen); // 현재 상태의 반대값으로 업데이트
   };
 
-  // 로그아웃 처리
-  const handleLogout = () => {
-    setIsLoggedIn(false); // 로그인 상태를 false로 변경
-    alert('로그아웃 되었습니다.'); // 팝업 메시지 표시
-    navigate('/'); // 홈 화면으로 이동
-  };
+
   
   // 사용자 아이콘 클릭 처리
-  const handleIconClick = () => {
-    if (isLoggedIn) {
-      handleLogout(); // 로그인 상태일 경우 로그아웃
+  const handleAuthClick = () => {
+    if (user) {
+      logout(); // 로그인 상태일 경우 로그아웃
+      alert('로그아웃 되었습니다.');
+      navigate('/'); // 홈 화면으로 이동
     } else {
       navigate('/signin'); // 비로그인 상태일 경우 로그인 페이지로 이동
     }
@@ -67,11 +65,10 @@ const Header = () => {
         </div>
         <div className="header-right"> {/* 헤더 오른쪽 영역 */}
           <button
-            className="login-logout-button"
-            onClick={handleIconClick}>
-            {isLoggedIn ? '로그아웃' : '로그인'} {/* 상태에 따라 버튼 텍스트 변경 */}
+            className="login-logout-button" onClick={handleAuthClick}>
+            {user ? '로그아웃' : '로그인'} {/* 상태에 따라 버튼 텍스트 변경 */}
           </button>
-          <button className="icon-button" onClick={handleIconClick}> {/* 사용자 프로필 이동 버튼 */}
+          <button className="icon-button" onClick={handleAuthClick}> {/* 사용자 프로필 이동 버튼 */}
             <i className="fas fa-user"></i> {/* 사용자 아이콘 */}
           </button>
         </div>
