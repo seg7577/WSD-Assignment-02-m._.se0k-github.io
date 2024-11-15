@@ -32,6 +32,9 @@ html, body {
   align-items: center;
   gap: 20px; /* 로고와 네비게이션 링크 간 간격 */
 }
+.header-left:hover{
+  color: red;
+}
 
 .logo {
   height: 40px;
@@ -50,7 +53,6 @@ html, body {
   justify-content: center; /* 중앙 정렬 */
   align-items: center; /* 중앙 정렬 */
 }
-
 /* 아이콘 스타일 */
 .icon-button i {
   color: white; /* 아이콘 색상을 흰색으로 변경 */
@@ -68,6 +70,9 @@ html, body {
 .nav-links li {
   margin-right: 20px;
 }
+.nav-links li:hover {
+  color: red;
+}
 
 .nav-links a {
   color: #e5e5e5;
@@ -77,7 +82,7 @@ html, body {
 }
 
 .nav-links a:hover {
-  color: #b3b3b3;
+  color: red;
 }
 
 /* 모바일 네비게이션 */
