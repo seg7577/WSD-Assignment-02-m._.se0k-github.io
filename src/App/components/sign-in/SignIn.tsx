@@ -69,8 +69,10 @@ const SignIn = () => {
 
   return (
     <div>
-      <div className="bg-image"></div>
+      <div className="bg-image">
       {/* 배경 이미지를 표시하는 div. 스타일은 SignIn.css에서 정의됨. */}
+      <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"></img>
+      </div>
 
       <div className="container">
         {/* 컴포넌트의 중앙 정렬 및 스타일링을 위한 컨테이너 */}
@@ -96,7 +98,7 @@ const SignIn = () => {
                     placeholder="Enter your email"
                     // 입력 필드의 기본 안내 텍스트.
                   />
-                  <label htmlFor="email">Username or Email</label>
+                  <label htmlFor="email"></label>
                   {/* 이메일 입력 필드의 레이블 */}
                 </div>
                 <div className="input">
@@ -111,7 +113,7 @@ const SignIn = () => {
                     placeholder="Enter your password"
                     // 입력 필드의 기본 안내 텍스트.
                   />
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password"></label>
                   {/* 비밀번호 입력 필드의 레이블 */}
                 </div>
                 <span className="checkbox remember">
