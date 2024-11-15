@@ -32,6 +32,9 @@ html, body {
   align-items: center;
   gap: 20px; /* 로고와 네비게이션 링크 간 간격 */
 }
+.header-left:hover{
+  color: red;
+}
 
 .logo {
   height: 40px;
@@ -40,6 +43,11 @@ html, body {
   align-items: center;
 }
 
+.header-right{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 /* 버튼 스타일 */
 .icon-button {
   background: none; /* 배경색 제거 */
@@ -50,11 +58,23 @@ html, body {
   justify-content: center; /* 중앙 정렬 */
   align-items: center; /* 중앙 정렬 */
 }
-
 /* 아이콘 스타일 */
 .icon-button i {
   color: white; /* 아이콘 색상을 흰색으로 변경 */
   font-size: 1.5rem; /* 아이콘 크기 조절 (필요에 따라 변경) */
+}
+
+/* 로그인/로그아웃 버튼 스타일 */
+.login-logout-button {
+  background: none;
+  color: #e5e5e5; /* 텍스트 색상 */
+  background-color: rgba(201, 38, 46, 0.735);
+  padding: 5px 10px; /* 버튼 여백 */
+  font-size: 1rem; /* 글꼴 크기 */
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  cursor: pointer;
+  border-radius: 5px; /* 모서리 둥글게 */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* 네비게이션 링크 */
@@ -68,6 +88,9 @@ html, body {
 .nav-links li {
   margin-right: 20px;
 }
+.nav-links li:hover {
+  color: red;
+}
 
 .nav-links a {
   color: #e5e5e5;
@@ -77,7 +100,7 @@ html, body {
 }
 
 .nav-links a:hover {
-  color: #b3b3b3;
+  color: red;
 }
 
 /* 모바일 네비게이션 */
