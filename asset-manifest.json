@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.c94b0aaf.css",
-    "main.js": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.0ab9b895.js",
+    "main.css": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.7c5a4973.css",
+    "main.js": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.32f3920a.js",
     "static/js/453.56d75c98.chunk.js": "/WSD-Assignment-02-m._.se0k-github.io/static/js/453.56d75c98.chunk.js",
     "static/media/fa-solid-900.ttf": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-solid-900.07ed6d5fa32c1d54af0f.ttf",
     "static/media/fa-brands-400.ttf": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-brands-400.0ff70dcbf135d859ebf3.ttf",
@@ -12,12 +12,12 @@
     "static/media/fa-v4compatibility.ttf": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-v4compatibility.0f6cb412603527bda691.ttf",
     "static/media/fa-v4compatibility.woff2": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-v4compatibility.6cfec8414be20e2c3426.woff2",
     "index.html": "/WSD-Assignment-02-m._.se0k-github.io/index.html",
-    "main.c94b0aaf.css.map": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.c94b0aaf.css.map",
-    "main.0ab9b895.js.map": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.0ab9b895.js.map",
+    "main.7c5a4973.css.map": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.7c5a4973.css.map",
+    "main.32f3920a.js.map": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.32f3920a.js.map",
     "453.56d75c98.chunk.js.map": "/WSD-Assignment-02-m._.se0k-github.io/static/js/453.56d75c98.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c94b0aaf.css",
-    "static/js/main.0ab9b895.js"
+    "static/css/main.7c5a4973.css",
+    "static/js/main.32f3920a.js"
   ]
 }
