@@ -1,4 +1,6 @@
 # Netflix Clone (WSD-Assignment-02)
+https://seg7577.github.io/WSD-Assignment-02-m._.se0k-github.io/
+
 ---
 ## FrameWork
 React
@@ -29,6 +31,9 @@ hotfix: 출시된 제품의 버그를 고치기 위한 브랜치
 브라우저에서 http://localhost:3000을 열어 확인할 수 있습니다.
 수정 사항을 저장하면 페이지가 자동으로 새로고침됩니다.
 또한, 콘솔에서 Lint 오류를 확인할 수 있습니다.
+
+http://localhost:3000/WSD-Assignment-02-m._.se0k-github.io/
+
 ### `npm test`
 
 테스트 러너(Test Runner)를 인터랙티브 워치 모드(Interactive Watch Mode)로 실행합니다.
