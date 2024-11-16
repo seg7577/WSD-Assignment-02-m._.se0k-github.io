@@ -32,7 +32,7 @@ const App = () => {
 
         {/* 로그인 페이지 */}
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+        {/* <Route path="/signup" element={<SignUp />} /> */}
         </Routes>
       </BrowserRouter>
     </AuthProvider>

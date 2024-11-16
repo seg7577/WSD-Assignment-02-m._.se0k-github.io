@@ -135,4 +135,8 @@ const Header = () => {
 };
 
 export default Header;
+<<<<<<< HEAD
 // Header 컴포넌트를 export하여 다른 파일에서 사용할 수 있도록 만듭니다.
+=======
+// Header 컴포넌트를 export하여 다른 파일에서 사용할 수 있도록 만듭니다.
+>>>>>>> 591e8c0 ([refactor] header 애니메이션 수정)
