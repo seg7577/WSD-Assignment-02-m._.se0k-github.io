@@ -1,132 +1,175 @@
-/* 전체 폼 애니메이션 효과 */
+/* 전체 카드 스타일 */
 .card {
-    background-color: #141414; /* 카드 배경색 */
-    border-radius: 10px; /* 모서리 둥글게 */
-    padding: 30px 40px;
-    width: 350px; /* 카드 크기 */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* 카드 그림자 */
-    text-align: center;
-    position: relative; /* 자식 요소 위치 지정용 */
-  
-    /* 애니메이션 설정 */
-    animation: tracking-in-expand-fwd 1.8s ease-out forwards; /* 애니메이션 이름과 지속 시간 */
-    overflow: hidden; /* 요소 밖의 내용 숨김 */
+  background-color: #141414; /* 카드 배경색 */
+  border-radius: 10px; /* 모서리 둥글게 */
+  padding: 30px 40px;
+  width: 350px; /* 카드 크기 */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* 카드 그림자 */
+  text-align: center;
+  position: relative; /* 자식 요소 위치 지정용 */
+  overflow: hidden; /* 요소 밖의 내용 숨김 */
+}
+
+/* 애니메이션 정의 */
+@-webkit-keyframes tracking-in-expand-fwd {
+  0% {
+    letter-spacing: -0.5em;
+    -webkit-transform: translateZ(-700px) scale(0.8); /* 초기 크기를 작게 설정 */
+    transform: translateZ(-700px) scale(0.8);
+    opacity: 0;
   }
-  @-webkit-keyframes tracking-in-expand-fwd {
-    0% {
-      letter-spacing: -0.5em;
-      -webkit-transform: translateZ(-700px);
-              transform: translateZ(-700px);
-      opacity: 0;
-    }
-    40% {
-      opacity: 0.6;
-    }
-    100% {
-      -webkit-transform: translateZ(0);
-              transform: translateZ(0);
-      opacity: 1;
-    }
+  30% {
+    opacity: 0.4; /* 조금 더 느리게 투명도 변화 */
+    -webkit-transform: translateZ(-300px) scale(0.9); /* 점점 확대 */
+    transform: translateZ(-300px) scale(0.9);
   }
-  @keyframes tracking-in-expand-fwd {
-    0% {
-      letter-spacing: -0.5em;
-      -webkit-transform: translateZ(-700px);
-              transform: translateZ(-700px);
-      opacity: 0;
-    }
-    40% {
-      opacity: 0.6;
-    }
-    100% {
-      -webkit-transform: translateZ(0);
-              transform: translateZ(0);
-      opacity: 1;
-    }
+  60% {
+    opacity: 0.8;
+    -webkit-transform: translateZ(-100px) scale(1); /* 원래 크기에 가까워짐 */
+    transform: translateZ(-100px) scale(1);
   }
-  
-  /* 배경 이미지 */
-  .bg-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 이미지를 영역에 맞게 조정 */
+  100% {
+    opacity: 1;
+    -webkit-transform: translateZ(0) scale(1); /* 최종 크기 */
+    transform: translateZ(0) scale(1);
   }
-  
-  /* 전체 폼 스타일 */
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-        /* 애니메이션 설정 */
-    animation: tracking-in-expand-fwd 1.8s ease-out forwards; /* 애니메이션 이름과 지속 시간 */
-    overflow: hidden; /* 요소 밖의 내용 숨김 */
-  }
-  
-  /* 공통 input 필드 스타일 */
-  .input {
-    animation: tracking-in-expand-fwd 1.8s ease-out forwards; /* 애니메이션 이름과 지속 시간 */
-    position: relative;
-    width: 90%;
-    margin-bottom: 30px;
-    margin-right: 30px;
-    margin-top: 10px;
-  }
-  
-  .input input {
-    width: 100%;
-    padding: 10px 15px;
-    font-size: 16px;
-    border: 1px solid #444;
-    border-radius: 5px;
-    background-color: #1e1e1e;
-    color: #fff;
-    outline: none;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-  }
-  
-  .input input:focus {
-    border-color: #e50914;
-    background-color: #292929;
-  }
-  
-  /* 버튼 스타일 */
-  button {
-    width: 90%;
-    padding: 10px 15px;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: #e50914;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:disabled {
-    background-color: #444;
-    cursor: not-allowed;
-  }
-  
-  button:hover:not(:disabled) {
-    background-color: #b20710;
-  }
-  
-  /* 하단 링크 스타일 */
-  .account-check {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #aaa;
-  }
-  
-  .account-check b {
-    color: #fff;
-    cursor: pointer;
-    text-decoration: underline;
-  }
-  
-  .account-check b:hover {
-    color: #e50914;
-  }
-  
+}
+
+
+/* 컴포넌트 전환 애니메이션 */
+.fade-enter {
+  opacity: 0;
+  transform: translateY(20px); /* 아래에서 위로 올라오는 애니메이션 */
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease; /* 0.5초 동안 부드럽게 전환 */
+}
+
+.fade-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: translateY(-20px); /* 위로 사라지는 애니메이션 */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* 배경 이미지 스타일 */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+  background-size: cover; /* 배경 이미지를 전체 화면에 맞게 조정 */
+  background-color: rgba(10, 10, 10, 0.1); /* 반투명 배경색 추가 */
+}
+
+/* 공통 폼 스타일 */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(20, 20, 20, 0.85); /* 반투명 배경 */
+}
+
+/* 공통 input 필드 스타일 */
+.input {
+  position: relative;
+  width: 90%;
+  margin-bottom: 20px;
+}
+
+.input input {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background-color: #1e1e1e;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.input input:focus {
+  border-color: #e50914;
+  background-color: #292929;
+}
+
+/* 버튼 스타일 */
+button {
+  width: 90%;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: red;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #444;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #b20710;
+}
+
+/* 하단 링크 스타일 */
+.account-check {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.account-check b {
+  color: #fff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.account-check b:hover {
+  color: #e50914;
+}
+
+/* 체크박스 스타일 */
+.checkbox {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 20px;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.checkbox input {
+  margin-right: 10px;
+}
+
+.checkbox label b {
+  color: #e50914;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.checkbox label b:hover {
+  color: #b20710;
+}
+
+/* 제목 스타일 */
+.card h1 {
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
