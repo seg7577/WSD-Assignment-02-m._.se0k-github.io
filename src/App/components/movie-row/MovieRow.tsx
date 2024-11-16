@@ -42,7 +42,7 @@ const MovieRow = ({
 
   // 슬라이더를 좌우로 이동시키는 함수
   const slide = (direction: 'left' | 'right') => {
-    const scrollValue = direction === 'left' ? -300 : 300; // 왼쪽은 -300px, 오른쪽은 +300px 이동
+    const scrollValue = direction === 'left' ? 300 : -300; // 왼쪽은 -300px, 오른쪽은 +300px 이동
     setScrollAmount((prev) => prev + scrollValue); // 새로운 스크롤 값을 상태로 저장
     if (sliderRef.current) {
       sliderRef.current.style.transform = `translateX(${scrollAmount + scrollValue}px)`; // 슬라이더를 이동

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SignUp.css';
-import { AuthService } from '../../util/auth/auth.service'; // AuthService 가져오기
+import { AuthService } from '../../util/auth/authService'; // AuthService 가져오기
 import { useNavigate } from 'react-router-dom'; // 페이지 전환을 위한 useNavigate
 
 const SignUp = () => {

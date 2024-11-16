@@ -5,7 +5,7 @@ import React, { createContext, useState, useContext, ReactNode } from 'react';
 // - useContext: Context를 사용하기 위해 가져옴
 // - ReactNode: JSX에서 사용할 수 있는 모든 요소를 포함하는 타입
 
-import { AuthService } from '../util/auth/auth.service';
+import { AuthService } from '../util/auth/authService';
 // AuthService를 가져옵니다. 로그인 및 회원가입 로직이 정의된 서비스입니다.
 
 interface AuthContextType {
