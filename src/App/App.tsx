@@ -7,16 +7,20 @@ import HomeWishlist from './components/home/wishlist/HomeWishlist';
 import HomePopular from './components/home/popular/HomePopular';
 import SignIn from './components/sign-in/SignIn';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import SignUp from './components/sign-up/SignUp';
 import { AuthProvider } from './context/AuthContext';
+import ToastContainer from './components/toast/ToastContainer';
+
 const App = () => {
   return (
     <AuthProvider>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
+        {/* ToastContainer는 모든 컴포넌트에서 Toast를 사용할 수 있도록 최상단에 배치 */}
+        <ToastContainer />
+
         {/* Header 컴포넌트는 모든 페이지에서 공통적으로 사용 */}
         <Header />
 
-        {/* Routes로 SPA 방식의 라우팅 설정 reset 성공!*/}
+        {/* Routes로 SPA 방식의 라우팅 설정 */}
         <Routes>
           {/* Home 컴포넌트를 부모로 설정 */}
           <Route path="/" element={<Home />}>
@@ -30,12 +34,13 @@ const App = () => {
             <Route path="wishlist" element={<HomeWishlist />} />
           </Route>
 
-        {/* 로그인 페이지 */}
-        <Route path="/signin" element={<SignIn />} />
-        {/* <Route path="/signup" element={<SignUp />} /> */}
+          {/* 로그인 페이지 */}
+          <Route path="/signin" element={<SignIn />} />
+          {/* <Route path="/signup" element={<SignUp />} /> */}
         </Routes>
       </BrowserRouter>
     </AuthProvider>
   );
 };
+
 export default App;

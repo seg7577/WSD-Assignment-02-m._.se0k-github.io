@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { ToastContext } from '../toast/ToastContainer';
 import './SignIn.css';
 import { useNavigate } from 'react-router-dom';
 import { AuthService } from '../../util/auth/auth.service'; // AuthService를 가져옵니다.
@@ -23,6 +24,8 @@ const Auth = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [acceptTerms, setAcceptTerms] = useState(false);
 
+  const toastContext = useContext(ToastContext);
+
   // 로그인 핸들러
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -31,9 +34,12 @@ const Auth = () => {
 
     try {
       await login(email, password); // AuthContext의 login 함수 호출
-      console.log('Login successful');
+      toastContext?.addToast('로그인 성공!', 'success'); // 성공 메시지
+      alert('로그인 성공!');
       navigate('/'); // 로그인 성공 시 메인 페이지로 이동
     } catch (err) {
+      toastContext?.addToast('로그인 실패: 이메일 또는 비밀번호를 확인하세요.', 'error'); // 실패 메시지
+      alert('로그인 실패!');
       setError('Invalid email or password. Please try again.');
     } finally {
       setIsLoading(false);
@@ -49,6 +55,8 @@ const Auth = () => {
     if (password !== confirmPassword) {
       setError('Passwords do not match.');
       setIsLoading(false);
+      toastContext?.addToast('비밀번호가 일치하지 않습니다.', 'error');
+      alert('비밀번호가 일치하지 않습니다.');
       return;
     }
 
@@ -60,9 +68,13 @@ const Auth = () => {
 
     try {
       await AuthService.tryRegister(email, password); // AuthService 회원가입 메서드 호출
+      toastContext?.addToast('회원가입 성공!', 'success'); // 성공 메시지
       console.log('Registration successful:', email);
+      alert('회원가입 성공!');
       setIsSignIn(true); // 회원가입 성공 후 로그인 화면으로 전환
     } catch (err) {
+      toastContext?.addToast('회원가입 실패: 이미 존재하는 이메일입니다.', 'error'); // 실패 메시지
+      alert('회원가입 실패: 이미 존재하는 이메일입니다.');
       setError('Registration failed: Email already exists.');
     } finally {
       setIsLoading(false);
