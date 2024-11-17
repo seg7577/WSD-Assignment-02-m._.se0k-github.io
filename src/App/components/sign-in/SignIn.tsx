@@ -133,6 +133,7 @@ const Auth = () => {
         </CSSTransition>
 
         {/* Sign Up 컴포넌트 */}
+{/* Sign Up 컴포넌트 */}
         <CSSTransition
           in={!isSignIn}
           timeout={500}
@@ -168,6 +169,12 @@ const Auth = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                 />
+                {/* 비밀번호가 일치하지 않을 경우 경고 메시지 표시 */}
+                {confirmPassword && password !== confirmPassword && (
+                  <p style={{ color: 'red', fontSize: '14px', marginTop: '5px' }}>
+                    Passwords do not match
+                  </p>
+                )}
               </div>
               <div className="checkbox">
                 <input
@@ -178,16 +185,24 @@ const Auth = () => {
                 />
                 <label htmlFor="terms">I agree to the Terms and Conditions</label>
               </div>
-              <button type="submit" disabled={isLoading}>
+              {/* 버튼 활성화 조건: 비밀번호가 일치하고 체크박스가 활성화된 경우 */}
+              <button
+                type="submit"
+                disabled={
+                  isLoading || !acceptTerms || password !== confirmPassword
+                }
+              >
                 {isLoading ? 'Registering...' : 'Register'}
               </button>
               {error && <p style={{ color: 'red' }}>{error}</p>}
               <div className="account-check">
-                Already have an account? <b onClick={() => setIsSignIn(true)}>Sign in</b>
+                Already have an account?{' '}
+                <b onClick={() => setIsSignIn(true)}>Sign in</b>
               </div>
             </form>
           </div>
         </CSSTransition>
+
       </div>
     </div>
   );
