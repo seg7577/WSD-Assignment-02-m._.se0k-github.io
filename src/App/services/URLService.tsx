@@ -81,9 +81,13 @@ export const WishlistProvider: React.FC<WishlistProviderProps> = ({ children }) 
 };
 
 export const useWishlist = () => {
+  //useWishlist 커스텀 훅
   const context = useContext(WishlistContext);
   if (!context) {
     throw new Error('useWishlist must be used within a WishlistProvider');
   }
   return context;
+  /*
+  useContext를 래핑하여 간단하게 WishlistContext를 사용할 수 있도록 함.
+  에러 처리: WishlistProvider 외부에서 이 훅을 사용하려고 하면 오류를 던짐. */
 };
