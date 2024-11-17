@@ -8,23 +8,44 @@ interface Movie {
 }
 
 interface MovieRowProps {
-  title: string; // 섹션 제목
-  fetchUrl: string; // 영화 데이터를 가져올 API URL
-  getImageUrl: (path: string) => string; // 포스터 경로를 전체 URL로 변환하는 함수
-  toggleWishlist: (movie: Movie) => void; // 위시리스트에 추가/제거 함수
-  isInWishlist: (id: number) => boolean; // 특정 영화가 위시리스트에 있는지 확인하는 함수
+  title: string;
+  fetchUrl: string;
+  getImageUrl: (path: string) => string;
+  toggleWishlist: (movie: Movie) => void;
+  isInWishlist: (id: number) => boolean;
 }
 
-const MovieRow = ({
-  title, // 섹션 제목
-  fetchUrl, // 영화 데이터를 가져올 API URL
-  getImageUrl, // 이미지 URL 변환 함수
-  toggleWishlist, // 위시리스트 추가/제거 함수
-  isInWishlist, // 위시리스트 확인 함수
-}: MovieRowProps) => {
+
+const MovieRow = ({ title, fetchUrl, getImageUrl }: MovieRowProps) => {
   const sliderRef = useRef<HTMLDivElement>(null); // 슬라이더 DOM 요소에 접근하기 위한 ref
   const [movies, setMovies] = useState<Movie[]>([]); // API에서 가져온 영화 데이터를 저장하는 상태
   const [scrollAmount, setScrollAmount] = useState(0); // 슬라이더의 현재 스크롤 위치를 추적하는 상태
+  const [wishlist, setWishlist] = useState<number[]>([]); // 위시리스트에 저장된 영화 ID 목록
+
+  // 로컬 스토리지에서 위시리스트를 로드
+  useEffect(() => {
+    const savedWishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    setWishlist(savedWishlist);
+  }, []);
+
+  // 로컬 스토리지에 위시리스트를 저장
+  const updateWishlistInLocalStorage = (updatedWishlist: number[]) => {
+    localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+  };
+
+  // 영화 카드 클릭 시 위시리스트에 추가/제거
+  const toggleWishlist = (movie: Movie) => {
+    const isMovieInWishlist = wishlist.includes(movie.id);
+    const updatedWishlist = isMovieInWishlist
+      ? wishlist.filter((id) => id !== movie.id) // 이미 있다면 제거
+      : [...wishlist, movie.id]; // 없다면 추가
+
+    setWishlist(updatedWishlist); // 상태 업데이트
+    updateWishlistInLocalStorage(updatedWishlist); // 로컬 스토리지에 저장
+  };
+
+  // 특정 영화가 위시리스트에 있는지 확인
+  const isInWishlist = (id: number) => wishlist.includes(id);
 
   // 컴포넌트가 처음 렌더링되거나 fetchUrl이 변경될 때 API 데이터를 가져옴
   useEffect(() => {
@@ -57,8 +78,8 @@ const MovieRow = ({
       </div>
       <div className="slider-container">
         {/* 왼쪽 이동 버튼 */}
-        <button className="slider-button-left" 
-        onClick={() => slide('left')}>&lt; {/* 왼쪽 화살표 */}
+        <button className="slider-button-left" onClick={() => slide('left')}>
+          &lt; {/* 왼쪽 화살표 */}
         </button>
         {/* 슬라이더 창 */}
         <div className="slider-window">
@@ -83,10 +104,7 @@ const MovieRow = ({
           </div>
         </div>
         {/* 오른쪽 이동 버튼 */}
-        <button
-          className="slider-button-right"
-          onClick={() => slide('right')} // 클릭 시 슬라이더를 오른쪽으로 이동
-        >
+        <button className="slider-button-right" onClick={() => slide('right')}>
           &gt; {/* 오른쪽 화살표 */}
         </button>
       </div>
