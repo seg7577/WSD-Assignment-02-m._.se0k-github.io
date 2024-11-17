@@ -3,22 +3,49 @@ import React from 'react';
 import Banner from '../../banner/Banner';
 import MovieRow from '../../movie-row/MovieRow';
 import './HomeMain.css'; // 스타일 가져오기
+import { useAuth } from '../../../context/AuthContext';
 
 const HomeMain = () => {
+  
+  const { user } = useAuth(); // 현재 로그인된 사용자 정보 가져오기
+
+  if (!user || !user.password) {
+    console.error('User is not authenticated or API key is missing.');
+    return <div>Error: API key is missing.</div>;
+  }
+
+  // 동적으로 URL을 생성하는 함수
+  const createApiUrl = (endpoint: string, params: Record<string, any> = {}) => {
+    const baseUrl = 'https://api.themoviedb.org/3';
+    const queryParams = new URLSearchParams({
+      api_key: user.password, // 사용자 API 키를 동적으로 추가
+      language: 'ko-KR',
+      ...params, // 추가 파라미터 병합
+    });
+
+    return `${baseUrl}/${endpoint}?${queryParams.toString()}`;
+  };
+
   // 배너에 표시할 대표 영화 데이터
   const featuredMovie = {
     title: '베놈: 라스트 댄스',
     overview: '환상의 케미스트리의 에디 브록과 심비오트 베놈...',
     backdropUrl: '/venom-backdrop.jpg',
   };
+  
+  const popularMoviesUrl = createApiUrl('movie/popular');
+  const newReleasesUrl = createApiUrl('movie/now_playing');
+  const actionMoviesUrl = createApiUrl('discover/movie', { with_genres: '28' });
 
-  // API URL (TMDB API 기반)
-  const popularMoviesUrl =
-    'https://api.themoviedb.org/3/movie/popular?api_key=871517dfdbe2bcf7907af69d5f74d916';
-  const newReleasesUrl =
-    'https://api.themoviedb.org/3/movie/now_playing?api_key=871517dfdbe2bcf7907af69d5f74d916';
-  const actionMoviesUrl =
-    'https://api.themoviedb.org/3/discover/movie?api_key=871517dfdbe2bcf7907af69d5f74d916&with_genres=28';
+
+  
+  // // API URL (TMDB API 기반)
+  // const popularMoviesUrl =
+  //   'https://api.themoviedb.org/3/movie/popular?api_key=871517dfdbe2bcf7907af69d5f74d916';
+  // const newReleasesUrl =
+  //   'https://api.themoviedb.org/3/movie/now_playing?api_key=871517dfdbe2bcf7907af69d5f74d916';
+  // const actionMoviesUrl =
+  //   'https://api.themoviedb.org/3/discover/movie?api_key=871517dfdbe2bcf7907af69d5f74d916&with_genres=28';
 
   // 이미지 URL 생성 함수
   const getImageUrl = (path: string) =>
