@@ -26,12 +26,6 @@ const HomeMain = () => {
     return `${baseUrl}/${endpoint}?${queryParams.toString()}`;
   };
 
-  // 배너에 표시할 대표 영화 데이터
-  const featuredMovie = {
-    title: '베놈: 라스트 댄스',
-    overview: '환상의 케미스트리의 에디 브록과 심비오트 베놈...',
-    backdropUrl: '/venom-backdrop.jpg',
-  };
   
   const popularMoviesUrl = createApiUrl('movie/popular');
   const newReleasesUrl = createApiUrl('movie/now_playing');
@@ -67,7 +61,7 @@ const HomeMain = () => {
       
       {/* 배너 컴포넌트 */}
       {/* 주요 영화(Featured Movie) 정보를 표시하는 배너 */}
-      <Banner movie={featuredMovie} />
+      <Banner/>
   
       {/* 영화 슬라이더 컴포넌트 */}
       {/* 인기 영화 슬라이더 */}

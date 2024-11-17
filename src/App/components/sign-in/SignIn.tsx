@@ -1,19 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useState,useContext } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { ToastContext } from '../toast/ToastContainer';
 import './SignIn.css';
 import { useNavigate } from 'react-router-dom';
 import { AuthService } from '../../util/auth/authService'; // AuthService를 가져옵니다.
 import { useAuth } from '../../context/AuthContext'; // AuthContext를 가져옵니다.
-import axios from 'axios'; // TMDB API 요청용
 
 const Auth = () => {
   const [isSignIn, setIsSignIn] = useState(true); // Sign In 상태 여부
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   // 공통 상태
   const [email, setEmail] = useState('');
-  const [apiKey, setApiKey] = useState(''); // API 키를 입력받는 상태
+  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -21,20 +20,11 @@ const Auth = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const { login } = useAuth();
 
-  const toastContext = useContext(ToastContext);
+  // SignUp 전용 상태
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [acceptTerms, setAcceptTerms] = useState(false);
 
-  // TMDB API 키 검증 함수
-  const validateApiKey = async (key: string): Promise<boolean> => {
-    try {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/configuration?api_key=${key}`
-      );
-      
-      return response.status === 200; // 유효한 API 키라면 true 반환
-    } catch (error) {
-      return false; // 잘못된 API 키라면 false 반환
-    }
-  };
+  const toastContext = useContext(ToastContext);
 
   // 로그인 핸들러
   const handleLogin = async (event: React.FormEvent) => {
@@ -43,13 +33,14 @@ const Auth = () => {
     setError('');
 
     try {
-      await login(email, apiKey); // AuthContext의 login 함수 호출
+      await login(email, password); // AuthContext의 login 함수 호출
       toastContext?.addToast('로그인 성공!', 'success'); // 성공 메시지
-      alert('로그인 성공!')
+      alert('로그인 성공!');
       navigate('/'); // 로그인 성공 시 메인 페이지로 이동
     } catch (err) {
-      toastContext?.addToast('로그인 실패: 이메일 또는 API 키를 확인하세요.', 'error'); // 실패 메시지
-      setError('Invalid email or API key. Please try again.');
+      toastContext?.addToast('로그인 실패: 이메일 또는 비밀번호를 확인하세요.', 'error'); // 실패 메시지
+      alert('로그인 실패!');
+      setError('Invalid email or password. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -61,24 +52,30 @@ const Auth = () => {
     setIsLoading(true);
     setError('');
 
-    // API 키 검증
-    const isValidApiKey = await validateApiKey(apiKey);
-    if (!isValidApiKey) {
-      setError('유효하지 않은 API 키입니다. 다시 입력해주세요.');
+    if (password !== confirmPassword) {
+      setError('Passwords do not match.');
       setIsLoading(false);
-      toastContext?.addToast('유효하지 않은 API 키입니다.', 'error'); // 실패 메시지
+      toastContext?.addToast('비밀번호가 일치하지 않습니다.', 'error');
+      alert('비밀번호가 일치하지 않습니다.');
+      return;
+    }
+
+    if (!acceptTerms) {
+      setError('You must accept the Terms and Conditions.');
+      setIsLoading(false);
       return;
     }
 
     try {
-      await AuthService.tryRegister(email, apiKey); // AuthService 회원가입 메서드 호출
+      await AuthService.tryRegister(email, password); // AuthService 회원가입 메서드 호출
       toastContext?.addToast('회원가입 성공!', 'success'); // 성공 메시지
-      alert('회원가입 성공!')
       console.log('Registration successful:', email);
+      alert('회원가입 성공!');
       setIsSignIn(true); // 회원가입 성공 후 로그인 화면으로 전환
     } catch (err) {
       toastContext?.addToast('회원가입 실패: 이미 존재하는 이메일입니다.', 'error'); // 실패 메시지
-      setError('이미 존재하는 이메일입니다.');
+      alert('회원가입 실패: 이미 존재하는 이메일입니다.');
+      setError('Registration failed: Email already exists.');
     } finally {
       setIsLoading(false);
     }
@@ -108,10 +105,10 @@ const Auth = () => {
               </div>
               <div className="input">
                 <input
-                  type="text"
-                  placeholder="Enter your TMDB API Key"
-                  value={apiKey}
-                  onChange={(e) => setApiKey(e.target.value)}
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>
@@ -156,12 +153,30 @@ const Auth = () => {
               </div>
               <div className="input">
                 <input
-                  type="text"
-                  placeholder="Enter your TMDB API Key"
-                  value={apiKey}
-                  onChange={(e) => setApiKey(e.target.value)}
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
+              </div>
+              <div className="input">
+                <input
+                  type="password"
+                  placeholder="Confirm your password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="checkbox">
+                <input
+                  type="checkbox"
+                  id="terms"
+                  checked={acceptTerms}
+                  onChange={(e) => setAcceptTerms(e.target.checked)}
+                />
+                <label htmlFor="terms">I agree to the Terms and Conditions</label>
               </div>
               <button type="submit" disabled={isLoading}>
                 {isLoading ? 'Registering...' : 'Register'}
