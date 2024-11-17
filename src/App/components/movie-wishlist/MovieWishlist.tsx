@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './movie-wishlist.css';
+import './MovieWishlist.css';
 
 const MovieWishlist = () => {
   const [currentView, setCurrentView] = useState<'grid' | 'list'>('grid');

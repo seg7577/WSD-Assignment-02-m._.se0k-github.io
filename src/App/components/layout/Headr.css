@@ -76,9 +76,46 @@ body {
   transition: color 0.3s ease;
 }
 
-.icon-button:hover i {
+.user-icon-button:hover i {
   color: #e50914;
 }
+
+/* 드롭다운 스타일 */
+.user-icon {
+  position: relative; /* 드롭다운 위치를 위해 부모를 상대적으로 설정 */
+  cursor: pointer;
+}
+
+.user-icon .dropdown {
+  position: absolute;
+  top: 100%; /* 아이콘 바로 아래에 배치 */
+  right: 0; /* 오른쪽 정렬 */
+  background-color: var(--dropdown-bg-color, #1e1e1e); /* 기본 배경색: 다크 */
+  color: var(--dropdown-text-color, #ffffff); /* 기본 텍스트 색상: 흰색 */
+  padding: 15px; /* 패딩 키움 */
+  border-radius: 8px; /* 둥근 모서리 */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* 그림자 더 강하게 */
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  z-index: 1000;
+  font-size: 1.1rem; /* 텍스트 크기 키움 */
+  transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* 부드러운 색상 전환 */
+  width: 200px; /* 드롭다운 너비 */
+}
+
+.user-icon .dropdown p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-weight: bold; /* 텍스트 강조 */
+}
+
+/* 드롭다운 색상 변경 효과 */
+.user-icon:hover .dropdown {
+  opacity: 1; /* 드롭다운 활성화 시 보이게 설정 */
+  background-color: var(--dropdown-hover-bg-color, rgba(201, 38, 46, 0.735)); /* 호버 시 배경색 변경 가능 */
+  color: var(--dropdown-hover-text-color, white); /* 호버 시 텍스트 색상 변경 가능 */
+}
+
 
 /* 로그인/로그아웃 버튼 스타일 */
 .login-logout-button {
