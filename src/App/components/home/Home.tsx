@@ -3,6 +3,7 @@ import Header from '../layout/Header'; // 헤더 컴포넌트를 가져옵니다
 import HomeMain from './main/HomeMain'; // 홈 메인 컴포넌트를 가져옵니다.
 import './Home.css'; // Home 컴포넌트의 스타일을 정의한 CSS 파일을 가져옵니다.
 import '../movie-row/MovieRow';
+import { Outlet } from 'react-router-dom'; // React Router의 Outlet 컴포넌트를 가져옵니다.
 
 const Home = () => {
   return (
@@ -11,8 +12,7 @@ const Home = () => {
       <Header /> 
       {/* 화면의 상단에 위치할 헤더 컴포넌트를 렌더링 */}
       <div id="container">
-        <HomeMain />
-        {/* 라우팅된 컴포넌트가 렌더링될 컨테이너 */}
+        <Outlet /> 
         {/* React Router의 Outlet 컴포넌트를 사용해 라우팅된 컴포넌트를 표시할 수 있습니다. */}
       </div>
     </div>

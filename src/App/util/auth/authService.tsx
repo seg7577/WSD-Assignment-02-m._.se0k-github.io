@@ -16,9 +16,11 @@ export const AuthService = { // AuthService 객체를 export하여 다른 파일
                     여기서 TMDb-Key라는 변수명은 실제 TMDB API 키와는 관련이 없고, 단지 비밀번호를 저장하기 위해 임의로 사용된 키 이름입니다
                   */
               }
+              console.log('authService.tsx 호출 성공')
               resolve(user);
                // 로그인 성공 시 해당 사용자 데이터를 resolve
           } else { 
+              console.log('authService.tsx 호출 실패')
               reject('Login failed');
               // 로그인 실패 시 에러 메시지를 reject
           }
