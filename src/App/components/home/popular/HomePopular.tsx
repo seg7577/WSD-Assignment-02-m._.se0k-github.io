@@ -1,18 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MovieGrid from '../../movie-grid/MovieGrid';
 import MovieInfiniteScroll from '../../movie-infinite-scroll/MovieInfiniteScroll';
-import './HomePopular.css';
+import { useAuth } from '../../../context/AuthContext';
 
+import './HomePopular.css';
+import '../main/HomeMain';
 const HomePopular = () => {
   const [currentView, setCurrentView] = useState<'grid' | 'list'>('grid');
+  const [password, setPassword] = useState<string>(''); // 사용자 비밀번호 상태
+  const { user } = useAuth(); // 현재 로그인된 사용자 정보 가져오기
+  const BASE_URL = 'https://api.themoviedb.org/3'; // 기본 API URL
 
-  const fetchPopularMoviesUrl = () => {
-    // 실제 데이터를 반환하도록 수정
-    return '/api/popular-movies'; // 실제 API URL
+  // 컴포넌트가 마운트될 때 로컬 스토리지에서 비밀번호를 읽어옴
+  useEffect(() => {
+    const storedPassword = localStorage.getItem('TMDb-Key');
+    if (storedPassword) {
+      setPassword(storedPassword); // 상태로 설정
+    }
+  }, []);
+
+  const fetchPopularMoviesUrl = (page: number = 1) => {
+    // 비밀번호를 사용하여 API URL 생성
+    return `${BASE_URL}/movie/popular?api_key=${encodeURIComponent(password)}&page=${page}`;
   };
 
   return (
     <div className="popular-container">
+      {/* View 전환 버튼 */}
       <div className="view-toggle">
         <button
           onClick={() => setCurrentView('grid')}
@@ -28,27 +42,29 @@ const HomePopular = () => {
         </button>
       </div>
 
+      {/* Grid View */}
       {currentView === 'grid' && (
         <MovieGrid
-          fetchUrl={fetchPopularMoviesUrl()} // 데이터 URL 전달
-          rowSize={5} // 페이지당 영화 수
-          getImageUrl={(path: string) =>
-            `https://image.tmdb.org/t/p/original${path}`
-          }
-          toggleWishlist={(movie: any) => console.log('Toggle Wishlist', movie)}
-          isInWishlist={(id: number) => false} // 실제 위시리스트 로직 필요
-        />
-      )}
-
-      {currentView === 'list' && (
-        <MovieInfiniteScroll
-          fetchUrl={fetchPopularMoviesUrl()} // 데이터 URL 전달
+          fetchUrl={fetchPopularMoviesUrl()} // URL에 비밀번호 포함
           rowSize={5}
           getImageUrl={(path: string) =>
             `https://image.tmdb.org/t/p/original${path}`
           }
           toggleWishlist={(movie: any) => console.log('Toggle Wishlist', movie)}
-          isInWishlist={(id: number) => false} // 실제 위시리스트 로직 필요
+          isInWishlist={(id: number) => false} // 위시리스트 로직
+        />
+      )}
+
+      {/* List View (Infinite Scroll) */}
+      {currentView === 'list' && (
+        <MovieInfiniteScroll
+          fetchUrl={fetchPopularMoviesUrl()} // URL에 비밀번호 포함
+          rowSize={5}
+          getImageUrl={(path: string) =>
+            `https://image.tmdb.org/t/p/original${path}`
+          }
+          toggleWishlist={(movie: any) => console.log('Toggle Wishlist', movie)}
+          isInWishlist={(id: number) => false}
         />
       )}
     </div>
