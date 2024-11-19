@@ -6,6 +6,7 @@ import { useAuth } from '../../../context/AuthContext';
 
 const HomeMain = () => {
   const { user } = useAuth(); // 현재 로그인된 사용자 정보 가져오기
+  
   // 위시리스트 상태 저장
   const [wishlist, setWishlist] = useState<number[]>(() => {
     // 로컬 스토리지에서 초기 상태를 가져옴
