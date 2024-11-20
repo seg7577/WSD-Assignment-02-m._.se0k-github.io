@@ -19,6 +19,7 @@ const HomePopular = () => {
     }
   }, []);
 
+  //인기영화 URL 생성
   const fetchPopularMoviesUrl = (page: number = 1) => {
     // 비밀번호를 사용하여 API URL 생성
     return `${BASE_URL}/movie/popular?api_key=${encodeURIComponent(password)}&page=${page}`;
@@ -46,7 +47,7 @@ const HomePopular = () => {
       {currentView === 'grid' && (
         <MovieGrid
           fetchUrl={fetchPopularMoviesUrl()} // URL에 비밀번호 포함
-          rowSize={5}
+          rowSize={8}
           getImageUrl={(path: string) =>
             `https://image.tmdb.org/t/p/original${path}`
           }
@@ -67,6 +68,7 @@ const HomePopular = () => {
           isInWishlist={(id: number) => false}
         />
       )}
+      
     </div>
   );
 };

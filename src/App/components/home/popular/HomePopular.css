@@ -1,7 +1,13 @@
+body {
+  overflow: hidden; /* 페이지 전체 스크롤 막기 */
+}
+
+
 .view-toggle {
     display: flex;
     justify-content: flex-end;
     margin-top: 50px;
+    margin-bottom: 50px;
   }
   
   .view-toggle button {
