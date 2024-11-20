@@ -5,6 +5,7 @@ import { useAuth } from '../../../context/AuthContext';
 
 import './HomePopular.css';
 import '../main/HomeMain';
+
 const HomePopular = () => {
   const [currentView, setCurrentView] = useState<'grid' | 'list'>('grid');
   const [password, setPassword] = useState<string>(''); // 사용자 비밀번호 상태
@@ -17,9 +18,17 @@ const HomePopular = () => {
     if (storedPassword) {
       setPassword(storedPassword); // 상태로 설정
     }
+
+    // 스크롤 막기
+    document.body.style.overflow = 'hidden';
+
+    // 컴포넌트 언마운트 시 스크롤 다시 활성화
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
   }, []);
 
-  //인기영화 URL 생성
+  // 인기영화 URL 생성
   const fetchPopularMoviesUrl = (page: number = 1) => {
     // 비밀번호를 사용하여 API URL 생성
     return `${BASE_URL}/movie/popular?api_key=${encodeURIComponent(password)}&page=${page}`;
@@ -28,6 +37,11 @@ const HomePopular = () => {
   return (
     <div className="popular-container">
       {/* View 전환 버튼 */}
+
+      <header className="header">
+        <h1>Popular Movies</h1>
+      </header>
+
       <div className="view-toggle">
         <button
           onClick={() => setCurrentView('grid')}
@@ -68,7 +82,6 @@ const HomePopular = () => {
           isInWishlist={(id: number) => false}
         />
       )}
-      
     </div>
   );
 };

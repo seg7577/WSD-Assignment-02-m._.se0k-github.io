@@ -1,8 +1,20 @@
-body {
-  overflow: hidden; /* 페이지 전체 스크롤 막기 */
+.popular-container{
+  height: 100vh; /* 화면 전체 높이를 차지 */
+  overflow: hidden; /* 스크롤 비활성화 */
 }
-
-
+.header {
+  position: fixed; /* 헤더를 고정 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: #333; /* 헤더 배경색 */
+  color: white;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 헤더 그림자 */
+  overflow: hidden; /* 스크롤 비활성화 */
+}
 .view-toggle {
     display: flex;
     justify-content: flex-end;
