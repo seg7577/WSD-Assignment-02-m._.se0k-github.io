@@ -1,5 +1,8 @@
+.movie-grid .grid-container {
+  display: grid !important;
+}
+
 .movie-grid {
-  display: flex; /* 플렉스 컨테이너로 설정 */
   justify-content: center; /* 자식 요소를 가로 중앙 정렬 */
   align-items: flex-start; /* 자식 요소를 상단에 정렬 */
   flex-wrap: wrap; /* 자식 요소가 넘칠 경우 줄 바꿈 */
@@ -13,7 +16,7 @@
 .grid-container {
   display: grid; /* 그리드 레이아웃 설정 */
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 열 크기 자동 조정 */
-  gap: 20px; /* 카드 간격 */
+  gap: 60px; /* 카드 간격 */
   width: 100%; /* 부모의 너비에 맞춤 */
   max-width: 1200px; /* 그리드의 최대 너비 지정 */
   margin: 0 auto; /* 중앙 정렬 */
