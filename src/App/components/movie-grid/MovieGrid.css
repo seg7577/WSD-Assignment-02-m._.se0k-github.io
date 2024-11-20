@@ -1,141 +1,42 @@
-.wishlist-indicator {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  color: #fff;
-  background-color: rgba(229, 9, 20, 0.8);
-  border-radius: 50%;
-  padding: 5px;
-  box-shadow: 0 0 8px rgba(229, 9, 20, 0.8);
-}
-
 .movie-grid {
-  width: 100%;
-  padding: 20px;
-  margin: 30px auto;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
-}
-
-.grid-container.list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .movie-card {
-  position: relative;
   background-color: #222;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.movie-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 .movie-card img {
   width: 100%;
   height: auto;
   object-fit: cover;
-  border-radius: 8px 8px 0 0;
-}
-
-.grid-container.list .movie-card {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-}
-
-.grid-container.list .movie-card img {
-  width: 100px;
-  height: auto;
-  border-radius: 4px;
 }
 
 .movie-title {
-  margin-top: 10px;
-  font-size: 16px;
-  font-weight: bold;
   text-align: center;
-  color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.grid-container.list .movie-title {
-  font-size: 14px;
-  text-align: left;
-  white-space: normal;
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.pagination button {
-  background-color: #444;
   color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 14px;
+  padding: 10px 0;
 }
 
-.pagination button:hover {
-  background-color: #555;
-}
-
-.pagination button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-@media (max-width: 768px) {
-  .movie-grid {
-    gap: 15px;
-  }
-
-  .grid-container {
-    gap: 15px;
-  }
-
-  .movie-card {
-    transform: scale(1);
-  }
-
-  .movie-card img {
-    height: 150px;
-  }
-
-  .movie-title {
-    font-size: 12px;
-  }
-
-  .pagination button {
-    font-size: 12px;
-    padding: 8px 10px;
-  }
-
-  .grid-container.list .movie-card img {
-    width: 80px;
-  }
+.movie-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
