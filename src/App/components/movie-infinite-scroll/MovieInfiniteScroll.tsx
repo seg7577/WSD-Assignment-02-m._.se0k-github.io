@@ -48,7 +48,7 @@ const MovieInfiniteScroll = ({
     fetchMovies();
   }, [page, fetchUrl]);
 
-  // Intersection Observer 설정
+  // Intersection Observer 설정.. 수정본...
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
