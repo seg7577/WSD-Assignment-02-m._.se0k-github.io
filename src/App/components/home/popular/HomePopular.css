@@ -1,6 +1,5 @@
 .popular-container{
   height: 100vh; /* 화면 전체 높이를 차지 */
-  overflow: hidden; /* 스크롤 비활성화 */
 }
 .header {
   position: fixed; /* 헤더를 고정 */

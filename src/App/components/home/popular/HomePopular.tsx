@@ -74,7 +74,6 @@ const HomePopular = () => {
       {currentView === 'list' && (
         <MovieInfiniteScroll
           fetchUrl={fetchPopularMoviesUrl()} // URL에 비밀번호 포함
-          rowSize={5}
           getImageUrl={(path: string) =>
             `https://image.tmdb.org/t/p/original${path}`
           }

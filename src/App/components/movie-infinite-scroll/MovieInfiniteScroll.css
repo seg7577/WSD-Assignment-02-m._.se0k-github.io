@@ -2,7 +2,7 @@
     width: 100%;
     margin-bottom: 40px;
     margin-top: 30px;
-    display: flex;
+    display: flex !important;
     flex-direction: column;
   }
   
@@ -31,7 +31,6 @@
     cursor: pointer;
     user-select: none;
     border-radius: 8px;
-    overflow: hidden;
   }
   
   .movie-card:hover {
@@ -53,7 +52,6 @@
     text-align: center;
     font-size: 14px;
     white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
     color: #fff;
   }

@@ -51,7 +51,6 @@ const HomeSearch = () => {
       <div className="content-search">
         <MovieInfiniteScroll
           fetchUrl={fetchUrl}
-          rowSize={10} // 한 번에 로드할 영화 수
           getImageUrl={(path) => `https://image.tmdb.org/t/p/w500/${path}`} // 이미지 URL 생성
           toggleWishlist={(movie) => console.log('Wishlist toggled:', movie)}
           isInWishlist={(id) => false} // Wishlist 확인 로직
