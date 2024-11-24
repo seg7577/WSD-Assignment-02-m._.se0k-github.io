@@ -16,18 +16,18 @@ const MovieSearch = ({
   const [selectedOptions, setSelectedOptions] = useState<{ [key: string]: string }>({});
 
   const handleSelect = (key: string, option: string) => {
-    setSelectedOptions((prev) => ({ ...prev, [key]: option }));
-    onOptionSelect(key, option);
+    setSelectedOptions((prev) => ({ ...prev, [key]: option })); // 선택된 값을 로컬 상태에 저장
+    onOptionSelect(key, option); // 선택된 값을 부모 컴포넌트로 전달
   };
 
   return (
     <div className="dropdown-container">
-      <label>선호하는 설정을 선택하세요</label>
+      <label>필터</label>
       {dropdownEntries.map((dropdown) => (
         <div className="custom-select" key={dropdown.key}>
           <select
-            value={selectedOptions[dropdown.key] || ''}
-            onChange={(e) => handleSelect(dropdown.key, e.target.value)}
+            value={selectedOptions[dropdown.key] || ''} // 선택된 값을 드롭다운에 표시
+            onChange={(e) => handleSelect(dropdown.key, e.target.value)} // 선택된 값을 업데이트
           >
             <option value="" disabled>
               선택하세요
