@@ -1,4 +1,5 @@
 .movie-grid {
+    overflow: auto !important; /* movie-grid 컨테이너 스크롤 활성화 */
     width: 100%;
     margin-bottom: 40px;
     margin-top: 30px;

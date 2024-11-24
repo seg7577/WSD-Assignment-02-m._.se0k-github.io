@@ -11,6 +11,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { AuthProvider } from './context/AuthContext';
 import ToastContainer from './components/toast/ToastContainer';
 import MovieWishlist from './components/movie-wishlist/MovieWishlist';
+import HomeSearch from './components/home/search/HomeSearch';
 
 const App = () => {
   return (
@@ -39,6 +40,8 @@ const App = () => {
 
               {/* 위시리스트 경로 */}
               <Route path="wishlist" element={<MovieWishlist />} />
+
+              <Route path="search" element={<HomeSearch />} />
             </Route>
           </Route>
         </Routes>
