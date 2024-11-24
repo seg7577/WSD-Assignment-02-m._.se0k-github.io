@@ -9,6 +9,27 @@ const HomeSearch = () => {
     sortId: '', // 선택된 정렬 ID
     ageId: 0, // 선택된 연령 제한 (0: 전체 관람가)
   });
+    // 위시리스트 상태 저장
+  const [wishlist, setWishlist] = useState<number[]>(() => {
+    // 로컬 스토리지에서 초기 상태를 가져옴
+    const storedWishlist = localStorage.getItem('wishlist');
+    return storedWishlist ? JSON.parse(storedWishlist) : [];
+  });
+
+  // 위시리스트 토글 함수
+  const toggleWishlist = (movie: { id: number }) => {
+    setWishlist((prevWishlist) => {
+      const isInList = prevWishlist.includes(movie.id);
+      const updatedWishlist = isInList
+        ? prevWishlist.filter((id) => id !== movie.id) // 이미 있다면 제거
+        : [...prevWishlist, movie.id]; // 없다면 추가
+      localStorage.setItem('wishlist', JSON.stringify(updatedWishlist)); // 로컬 스토리지에 저장
+      return updatedWishlist;
+    });
+  };
+
+  // 위시리스트 상태 확인 함수
+  const isInWishlist = (id: number) => wishlist.includes(id);  
   const [fetchUrl, setFetchUrl] = useState<string>(''); // API URL 상태 관리
   const [password, setPassword] = useState<string>(''); // TMDB API Key
   const BASE_URL = 'https://api.themoviedb.org/3'; // TMDB 기본 URL

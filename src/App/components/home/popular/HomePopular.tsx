@@ -9,39 +9,56 @@ import '../main/HomeMain';
 const HomePopular = () => {
   const [currentView, setCurrentView] = useState<'grid' | 'list'>('grid');
   const [password, setPassword] = useState<string>(''); // 사용자 비밀번호 상태
-  const { user } = useAuth(); // 현재 로그인된 사용자 정보 가져오기
-  const BASE_URL = 'https://api.themoviedb.org/3'; // 기본 API URL
+  const { user } = useAuth();
+  const BASE_URL = 'https://api.themoviedb.org/3';
 
-  // 컴포넌트가 마운트될 때 로컬 스토리지에서 비밀번호를 읽어옴
+  const [wishlist, setWishlist] = useState<number[]>([]);
+
+  // 로컬 스토리지에서 위시리스트를 로드
+  useEffect(() => {
+    const savedWishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    setWishlist(savedWishlist);
+  }, []);
+
+  // 로컬 스토리지에 위시리스트를 저장
+  const updateWishlistInLocalStorage = (updatedWishlist: number[]) => {
+    localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+  };
+
+  // 위시리스트 추가/제거
+  const toggleWishlist = (movie: { id: number }) => {
+    const isMovieInWishlist = wishlist.includes(movie.id);
+    const updatedWishlist = isMovieInWishlist
+      ? wishlist.filter((id) => id !== movie.id)
+      : [...wishlist, movie.id];
+
+    setWishlist(updatedWishlist);
+    updateWishlistInLocalStorage(updatedWishlist);
+  };
+
+  // 위시리스트 확인
+  const isInWishlist = (id: number) => wishlist.includes(id);
+
   useEffect(() => {
     const storedPassword = localStorage.getItem('TMDb-Key');
     if (storedPassword) {
-      setPassword(storedPassword); // 상태로 설정
+      setPassword(storedPassword);
     }
-
-    // 스크롤 막기
     document.body.style.overflow = 'hidden';
-
-    // 컴포넌트 언마운트 시 스크롤 다시 활성화
     return () => {
       document.body.style.overflow = 'auto';
     };
   }, []);
 
-  // 인기영화 URL 생성
   const fetchPopularMoviesUrl = (page: number = 1) => {
-    // 비밀번호를 사용하여 API URL 생성
     return `${BASE_URL}/movie/popular?api_key=${encodeURIComponent(password)}&page=${page}`;
   };
 
   return (
     <div className="popular-container">
-      {/* View 전환 버튼 */}
-
       <header className="header">
         <h1>Popular Movies</h1>
       </header>
-
       <div className="view-toggle">
         <button
           onClick={() => setCurrentView('grid')}
@@ -57,28 +74,26 @@ const HomePopular = () => {
         </button>
       </div>
 
-      {/* Grid View */}
       {currentView === 'grid' && (
         <MovieGrid
-          fetchUrl={fetchPopularMoviesUrl()} // URL에 비밀번호 포함
+          fetchUrl={fetchPopularMoviesUrl()}
           rowSize={8}
           getImageUrl={(path: string) =>
             `https://image.tmdb.org/t/p/original${path}`
           }
-          toggleWishlist={(movie: any) => console.log('Toggle Wishlist', movie)}
-          isInWishlist={(id: number) => false} // 위시리스트 로직
+          toggleWishlist={toggleWishlist}
+          isInWishlist={isInWishlist}
         />
       )}
 
-      {/* List View (Infinite Scroll) */}
       {currentView === 'list' && (
         <MovieInfiniteScroll
-          fetchUrl={fetchPopularMoviesUrl()} // URL에 비밀번호 포함
+          fetchUrl={fetchPopularMoviesUrl()}
           getImageUrl={(path: string) =>
             `https://image.tmdb.org/t/p/original${path}`
           }
-          toggleWishlist={(movie: any) => console.log('Toggle Wishlist', movie)}
-          isInWishlist={(id: number) => false}
+          toggleWishlist={toggleWishlist}
+          isInWishlist={isInWishlist}
         />
       )}
     </div>

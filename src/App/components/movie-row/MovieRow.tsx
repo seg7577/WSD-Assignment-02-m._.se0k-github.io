@@ -15,7 +15,12 @@ interface MovieRowProps {
   isInWishlist: (id: number) => boolean;
 }
 
-
+interface MovieRowProps {
+  fetchUrl: string;
+  getImageUrl: (path: string) => string;
+  toggleWishlist: (movie: Movie) => void;
+  isInWishlist: (id: number) => boolean;
+}
 const MovieRow = ({ title, fetchUrl, getImageUrl }: MovieRowProps) => {
   const sliderRef = useRef<HTMLDivElement>(null); // 슬라이더 DOM 요소에 접근하기 위한 ref
   const [movies, setMovies] = useState<Movie[]>([]); // API에서 가져온 영화 데이터를 저장하는 상태
