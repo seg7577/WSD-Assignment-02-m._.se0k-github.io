@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './MovieSearch.css';
 
 interface DropdownEntry {
@@ -8,36 +8,20 @@ interface DropdownEntry {
 
 interface MovieSearchProps {
   dropdownEntries: DropdownEntry[];
+  selectedOptions: { [key: string]: string | number }; // 부모 상태에서 전달받는 선택된 옵션
   onOptionSelect: (key: string, value: string) => void;
   onClearOptions: () => void;
 }
 
-const MovieSearch = ({ dropdownEntries, onOptionSelect, onClearOptions }: MovieSearchProps) => {
-  const [selectedOptions, setSelectedOptions] = useState<{ [key: string]: string }>({});
-
-  // 드롭다운 초기화 함수
-  const clearDropdowns = () => {
-    const initialOptions: { [key: string]: string } = {};
-    dropdownEntries.forEach((entry) => {
-      initialOptions[entry.key] = '';
-    });
-    setSelectedOptions(initialOptions);
+const MovieSearch = ({
+  dropdownEntries,
+  selectedOptions,
+  onOptionSelect,
+  onClearOptions,
+}: MovieSearchProps) => {
+  const handleSelect = (key: string, value: string) => {
+    onOptionSelect(key, value); // 부모 컴포넌트에 선택된 값 전달
   };
-
-  // 초기화 버튼 클릭 시 드롭다운 초기화
-  const handleClearOptions = () => {
-    clearDropdowns();
-    onClearOptions();
-  };
-
-  const handleSelect = (key: string, option: string) => {
-    setSelectedOptions((prev) => ({ ...prev, [key]: option }));
-    onOptionSelect(key, option);
-  };
-
-  useEffect(() => {
-    clearDropdowns(); // 초기 렌더링 시 드롭다운 초기화
-  }, [dropdownEntries]);
 
   return (
     <div className="dropdown-container">
@@ -45,7 +29,7 @@ const MovieSearch = ({ dropdownEntries, onOptionSelect, onClearOptions }: MovieS
       {dropdownEntries.map((dropdown) => (
         <div className="custom-select" key={dropdown.key}>
           <select
-            value={selectedOptions[dropdown.key] || ''}
+            value={selectedOptions[dropdown.key] || ''} // 부모에서 전달받은 상태 사용
             onChange={(e) => handleSelect(dropdown.key, e.target.value)}
           >
             <option value="" disabled>
@@ -66,7 +50,7 @@ const MovieSearch = ({ dropdownEntries, onOptionSelect, onClearOptions }: MovieS
           </select>
         </div>
       ))}
-      <button className="clear-options" onClick={handleClearOptions}>
+      <button className="clear-options" onClick={onClearOptions}>
         초기화
       </button>
     </div>

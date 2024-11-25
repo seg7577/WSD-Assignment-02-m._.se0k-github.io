@@ -20,7 +20,6 @@ const HomeSearch = () => {
   const [fetchUrl, setFetchUrl] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  // 로컬 스토리지에서 API Key 가져오기
   useEffect(() => {
     const storedPassword = localStorage.getItem('TMDb-Key');
     if (storedPassword) {
@@ -28,18 +27,15 @@ const HomeSearch = () => {
     }
   }, []);
 
-  // API 기본 URL 생성
   const getDefaultUrl = () =>
     `${BASE_URL}/discover/movie?api_key=${encodeURIComponent(password)}&page=1`;
 
-  // 페이지 최초 렌더링 시 기본 영화 리스트 로드
   useEffect(() => {
     if (password) {
       setFetchUrl(getDefaultUrl());
     }
   }, [password]);
 
-  // 옵션 변경 시 API URL 업데이트
   useEffect(() => {
     if (password) {
       const genreParam = options.genreId ? `&with_genres=${options.genreId}` : '';
@@ -77,13 +73,13 @@ const HomeSearch = () => {
       ...prev,
       [key]: key === 'ageId' ? parseInt(value, 10) : value,
     }));
-    document.documentElement.scrollTo({ top: 0, behavior: 'smooth' }); // 드롭다운 변경 시 맨 위로 스크롤
+    document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const clearOptions = () => {
     setOptions({ genreId: '', sortId: '', ageId: 0 });
-    setFetchUrl(getDefaultUrl()); // 기본 API URL로 재설정
-    document.documentElement.scrollTo({ top: 0, behavior: 'smooth' }); // 초기화 시 맨 위로 스크롤
+    setFetchUrl(getDefaultUrl());
+    document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const toggleWishlist = (movie: { id: number }) => {
@@ -104,6 +100,7 @@ const HomeSearch = () => {
       <div className="container-search-bar">
         <MovieSearch
           dropdownEntries={dropdownEntries}
+          selectedOptions={options} // 부모 상태를 전달
           onOptionSelect={changeOptions}
           onClearOptions={clearOptions}
         />
