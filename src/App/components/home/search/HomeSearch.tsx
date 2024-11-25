@@ -4,6 +4,8 @@ import MovieInfiniteScroll from '../../movie-infinite-scroll/MovieInfiniteScroll
 import './HomeSearch.css'; // 스타일링 파일
 
 const HomeSearch = () => {
+  const BASE_URL = 'https://api.themoviedb.org/3';
+
   const [options, setOptions] = useState({
     genreId: '', // 선택된 장르 ID
     sortId: '', // 선택된 정렬 ID
@@ -14,6 +16,69 @@ const HomeSearch = () => {
     const storedWishlist = localStorage.getItem('wishlist');
     return storedWishlist ? JSON.parse(storedWishlist) : [];
   });
+
+  const [fetchUrl, setFetchUrl] = useState<string>(''); // API URL 상태
+  const [password, setPassword] = useState<string>(''); // TMDB API Key
+
+  // 로컬 스토리지에서 API Key 가져오기
+  useEffect(() => {
+    const storedPassword = localStorage.getItem('TMDb-Key');
+    if (storedPassword) {
+      setPassword(storedPassword);
+    }
+  }, []);
+
+  // 페이지 최초 렌더링 시 기본 API 호출
+  useEffect(() => {
+    if (password) {
+      const defaultUrl = `${BASE_URL}/discover/movie?api_key=${encodeURIComponent(password)}&page=1`;
+      setFetchUrl(defaultUrl);
+    }
+  }, [password]);
+
+  // 드롭다운 옵션 변경 시 API 호출 URL 업데이트
+  useEffect(() => {
+    if (password) {
+      const genreParam = options.genreId ? `&with_genres=${options.genreId}` : '';
+      const sortParam = options.sortId ? `&sort_by=${options.sortId}` : '';
+      const ageParam = options.ageId ? `&certification_country=US&certification.lte=${options.ageId}` : '';
+      const updatedUrl = `${BASE_URL}/discover/movie?api_key=${encodeURIComponent(
+        password
+      )}&page=1${genreParam}${sortParam}${ageParam}`;
+      setFetchUrl(updatedUrl);
+    }
+  }, [options, password]);
+
+  const dropdownEntries = [
+    {
+      key: 'genreId',
+      options: [
+        { id: '28', name: '액션' },
+        { id: '12', name: '모험' },
+        { id: '35', name: '코미디' },
+      ],
+    },
+    {
+      key: 'sortId',
+      options: [
+        { id: 'release_date.desc', name: '최신순' },
+        { id: 'popularity.desc', name: '인기순' },
+        { id: 'vote_average.desc', name: '평점순' },
+      ],
+    },
+    { key: 'ageId', options: ['0', '12', '15', '18'] },
+  ];
+
+  const changeOptions = (key: string, value: string) => {
+    setOptions((prev) => ({
+      ...prev,
+      [key]: key === 'ageId' ? parseInt(value, 10) : value,
+    }));
+  };
+
+  const clearOptions = () => {
+    setOptions({ genreId: '', sortId: '', ageId: 0 });
+  };
 
   const toggleWishlist = (movie: { id: number }) => {
     setWishlist((prevWishlist) => {
@@ -27,73 +92,6 @@ const HomeSearch = () => {
   };
 
   const isInWishlist = (id: number) => wishlist.includes(id);
-
-  const BASE_URL = 'https://api.themoviedb.org/3';
-  const [fetchUrl, setFetchUrl] = useState<string>(''); // 필터링된 API URL 상태 관리
-  const [password, setPassword] = useState<string>(''); // TMDB API Key
-
-  // 로컬 스토리지에서 API Key 가져오기
-  useEffect(() => {
-    const storedPassword = localStorage.getItem('TMDb-Key');
-    if (storedPassword) {
-      setPassword(storedPassword);
-    }
-  }, []);
-
-  // 드롭다운 필터링에 사용할 옵션 목록
-  const dropdownEntries = [
-    {
-      key: 'genreId',
-      options: ['28:액션', '12:모험', '35:코미디'], // 장르 ID와 이름
-    },
-    {
-      key: 'sortId',
-      options: ['최신순', '인기순', '평점순'], // 정렬 옵션
-    },
-    {
-      key: 'ageId',
-      options: ['0', '12', '15', '18'], // 연령 제한 옵션
-    },
-  ];
-
-  // 필터링 옵션 변경 함수
-  const changeOptions = (key: string, value: string) => {
-    setOptions((prev) => ({
-      ...prev,
-      [key]: key === 'ageId' ? parseInt(value, 10) : value.split(':')[0], // ageId는 숫자로 변환, genreId는 ID만 추출
-    }));
-  };
-
-  // 필터링 옵션 초기화 함수
-  const clearOptions = () => {
-    setOptions({ genreId: '', sortId: '', ageId: 0 });
-  };
-
-  // 필터링된 API URL 생성 함수
-  const fetchSearchMoviesUrl = (page: number = 1) => {
-    const genreParam = options.genreId ? `&with_genres=${options.genreId}` : '';
-    const sortParam =
-      options.sortId === '최신순'
-        ? 'release_date.desc'
-        : options.sortId === '인기순'
-        ? 'popularity.desc'
-        : options.sortId === '평점순'
-        ? 'vote_average.desc'
-        : '';
-    const sortParamQuery = sortParam ? `&sort_by=${sortParam}` : '';
-    const ageParam = options.ageId ? `&certification_country=US&certification.lte=${options.ageId}` : '';
-
-    return `${BASE_URL}/discover/movie?api_key=${encodeURIComponent(
-      password
-    )}&page=${page}${genreParam}${sortParamQuery}${ageParam}`;
-  };
-
-  // 필터링 조건 변경 시 API URL 업데이트
-  useEffect(() => {
-    if (password) {
-      setFetchUrl(fetchSearchMoviesUrl()); // URL 생성 및 상태 업데이트
-    }
-  }, [options, password]);
 
   return (
     <div className="container-search">

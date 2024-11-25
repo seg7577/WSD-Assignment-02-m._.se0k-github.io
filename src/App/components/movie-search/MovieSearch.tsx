@@ -8,7 +8,7 @@ const MovieSearch = ({
 }: {
   dropdownEntries: Array<{
     key: string;
-    options: string[];
+    options: Array<{ id: string; name: string }> | string[];
   }>;
   onOptionSelect: (key: string, value: string) => void;
   onClearOptions: () => void;
@@ -16,27 +16,35 @@ const MovieSearch = ({
   const [selectedOptions, setSelectedOptions] = useState<{ [key: string]: string }>({});
 
   const handleSelect = (key: string, option: string) => {
-    setSelectedOptions((prev) => ({ ...prev, [key]: option })); // 선택된 값을 로컬 상태에 저장
-    onOptionSelect(key, option); // 선택된 값을 부모 컴포넌트로 전달
+    console.log(`Selected key: ${key}, value: ${option}`); // Debugging
+    setSelectedOptions((prev) => ({ ...prev, [key]: option })); // 업데이트
+    onOptionSelect(key, option); // 부모로 전달
   };
 
   return (
     <div className="dropdown-container">
-      <label>필터</label>
+      <label className="filter-label">필터</label>
       {dropdownEntries.map((dropdown) => (
         <div className="custom-select" key={dropdown.key}>
           <select
-            value={selectedOptions[dropdown.key] || ''} // 선택된 값을 드롭다운에 표시
-            onChange={(e) => handleSelect(dropdown.key, e.target.value)} // 선택된 값을 업데이트
+            value={selectedOptions[dropdown.key] || ''}
+            onChange={(e) => handleSelect(dropdown.key, e.target.value)}
           >
             <option value="" disabled>
               선택하세요
             </option>
-            {dropdown.options.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
+            {Array.isArray(dropdown.options) &&
+              dropdown.options.map((option) =>
+                typeof option === 'string' ? (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ) : (
+                  <option key={option.id} value={option.id}>
+                    {option.name}
+                  </option>
+                )
+              )}
           </select>
         </div>
       ))}
@@ -46,5 +54,6 @@ const MovieSearch = ({
     </div>
   );
 };
+
 
 export default MovieSearch;

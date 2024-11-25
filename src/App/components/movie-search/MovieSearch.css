@@ -4,6 +4,11 @@
     align-items: center;
     gap: 15px;
   }
+  .filter-label {
+    writing-mode: horizontal-tb; /* 기본 가로 방향으로 텍스트 출력 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    word-break: normal; /* 단어가 잘리지 않도록 설정 */
+  }
   
   .custom-select {
     min-width: 120px;

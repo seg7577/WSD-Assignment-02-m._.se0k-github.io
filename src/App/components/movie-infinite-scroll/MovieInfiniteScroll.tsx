@@ -26,6 +26,13 @@ const MovieInfiniteScroll = ({
   const [hasMore, setHasMore] = useState(true);
   const loadingTriggerRef = useRef<HTMLDivElement | null>(null);
 
+  // fetchUrl이 변경될 때 상태 초기화
+  useEffect(() => {
+    setMovies([]);
+    setPage(1);
+    setHasMore(true);
+  }, [fetchUrl]);
+
   // TMDB API에서 영화 데이터를 가져오는 함수
   const fetchMovies = async () => {
     if (isLoading || !hasMore) return;
@@ -35,9 +42,15 @@ const MovieInfiniteScroll = ({
       const response = await fetch(`${fetchUrl}&page=${page}`);
       const data = await response.json();
 
-      setMovies((prev) => [...prev, ...(data.results || [])]);
+      if (page === 1) {
+        // 페이지 1이면 새 데이터로 교체
+        setMovies(data.results || []);
+      } else {
+        // 추가 데이터를 기존 데이터와 병합
+        setMovies((prev) => [...prev, ...(data.results || [])]);
+      }
+
       setHasMore(page < data.total_pages);
-      setPage((prevPage) => prevPage + 1);
     } catch (error) {
       console.error('Error fetching movies:', error);
     } finally {
@@ -45,10 +58,12 @@ const MovieInfiniteScroll = ({
     }
   };
 
+  // fetchUrl이나 page가 변경될 때 데이터 요청
   useEffect(() => {
     fetchMovies();
-  }, [page, fetchUrl]);
+  }, [fetchUrl, page]);
 
+  // 무한 스크롤 로직
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
