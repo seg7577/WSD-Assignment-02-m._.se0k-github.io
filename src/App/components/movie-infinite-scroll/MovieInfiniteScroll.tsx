@@ -7,12 +7,16 @@ interface Movie {
   title: string;
 }
 
-interface MovieInfiniteScrollProps {
-  fetchUrl: string; // API URL
+interface MovieInfiniteScrollPropsBase {
   getImageUrl: (path: string) => string; // 이미지 URL 생성 함수
   toggleWishlist: (movie: Movie) => void; // 위시리스트 추가/제거 함수
   isInWishlist: (id: number) => boolean; // 위시리스트 확인 함수
 }
+
+type MovieInfiniteScrollProps =
+  | (MovieInfiniteScrollPropsBase & { movies: Movie[]; fetchUrl?: never }) // `movies`만 제공되는 경우
+  | (MovieInfiniteScrollPropsBase & { fetchUrl: string; movies?: never }); // `fetchUrl`만 제공되는 경우
+
 
 const MovieInfiniteScroll = ({
   fetchUrl,
@@ -111,3 +115,4 @@ const MovieInfiniteScroll = ({
 };
 
 export default MovieInfiniteScroll;
+

@@ -4,40 +4,46 @@ import MovieInfiniteScroll from '../../movie-infinite-scroll/MovieInfiniteScroll
 import { useAuth } from '../../../context/AuthContext';
 
 import './HomePopular.css';
-import '../main/HomeMain';
+
+interface Movie {
+  id: number;
+  poster_path: string;
+  title: string;
+}
 
 const HomePopular = () => {
   const [currentView, setCurrentView] = useState<'grid' | 'list'>('grid');
   const [password, setPassword] = useState<string>(''); // 사용자 비밀번호 상태
+  const [wishlist, setWishlist] = useState<Movie[]>([]); // 위시리스트를 영화 객체로 변경
   const { user } = useAuth();
   const BASE_URL = 'https://api.themoviedb.org/3';
 
-  const [wishlist, setWishlist] = useState<number[]>([]);
-
   // 로컬 스토리지에서 위시리스트를 로드
   useEffect(() => {
-    const savedWishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-    setWishlist(savedWishlist);
+    const savedWishlist = localStorage.getItem('wishlist');
+    if (savedWishlist) {
+      setWishlist(JSON.parse(savedWishlist)); // 영화 객체 리스트로 복원
+    }
   }, []);
 
   // 로컬 스토리지에 위시리스트를 저장
-  const updateWishlistInLocalStorage = (updatedWishlist: number[]) => {
+  const updateWishlistInLocalStorage = (updatedWishlist: Movie[]) => {
     localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
   };
 
   // 위시리스트 추가/제거
-  const toggleWishlist = (movie: { id: number }) => {
-    const isMovieInWishlist = wishlist.includes(movie.id);
+  const toggleWishlist = (movie: Movie) => {
+    const isMovieInWishlist = wishlist.some((item) => item.id === movie.id);
     const updatedWishlist = isMovieInWishlist
-      ? wishlist.filter((id) => id !== movie.id)
-      : [...wishlist, movie.id];
+      ? wishlist.filter((item) => item.id !== movie.id) // 이미 있다면 제거
+      : [...wishlist, movie]; // 없다면 영화 객체 추가
 
     setWishlist(updatedWishlist);
     updateWishlistInLocalStorage(updatedWishlist);
   };
 
   // 위시리스트 확인
-  const isInWishlist = (id: number) => wishlist.includes(id);
+  const isInWishlist = (id: number) => wishlist.some((movie) => movie.id === id);
 
   useEffect(() => {
     const storedPassword = localStorage.getItem('TMDb-Key');

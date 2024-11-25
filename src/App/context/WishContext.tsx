@@ -1,79 +1,66 @@
-import React, { createContext, useReducer, useContext, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // Movie 타입 정의
-interface Movie {
+export interface Movie {
   id: number;
   title: string;
-  poster_path?: string;
-  overview?: string;
+  overview: string;
+  posterPath: string;
 }
 
-interface WishlistState {
+// WishlistContext에서 사용할 타입 정의
+interface WishlistContextType {
   wishlist: Movie[];
+  toggleWishlist: (movie: Movie) => void;
+  isInWishlist: (movieId: number) => boolean;
 }
-
-type WishlistAction =
-  | { type: 'ADD_TO_WISHLIST'; movie: Movie }
-  | { type: 'REMOVE_FROM_WISHLIST'; movieId: number }
-  | { type: 'SET_WISHLIST'; movies: Movie[] };
-
-// 초기 상태
-const initialState: WishlistState = {
-  wishlist: [],
-};
-
-// Reducer 함수
-const wishlistReducer = (state: WishlistState, action: WishlistAction): WishlistState => {
-  switch (action.type) {
-    case 'ADD_TO_WISHLIST':
-      return { ...state, wishlist: [...state.wishlist, action.movie] };
-    case 'REMOVE_FROM_WISHLIST':
-      return {
-        ...state,
-        wishlist: state.wishlist.filter((movie) => movie.id !== action.movieId),
-      };
-    case 'SET_WISHLIST':
-      return { ...state, wishlist: action.movies };
-    default:
-      return state;
-  }
-};
 
 // Context 생성
-const WishlistContext = createContext<{
-  state: WishlistState;
-  dispatch: React.Dispatch<WishlistAction>;
-} | null>(null);
-
-interface WishlistProviderProps {
-  children: ReactNode; // children 타입을 명시적으로 정의
-}
+const WishlistContext = createContext<WishlistContextType | undefined>(undefined);
 
 // WishlistProvider 컴포넌트
-export const WishlistProvider: React.FC<WishlistProviderProps> = ({ children }) => {
-  const [state, dispatch] = useReducer(wishlistReducer, initialState);
+export const WishlistProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [wishlist, setWishlist] = useState<Movie[]>([]);
 
-  // 로컬 스토리지에서 위시리스트를 로드
+  // 로컬스토리지에서 위시리스트 가져오기
   useEffect(() => {
     const storedWishlist = localStorage.getItem('movieWishlist');
     if (storedWishlist) {
-      dispatch({ type: 'SET_WISHLIST', movies: JSON.parse(storedWishlist) });
+      setWishlist(JSON.parse(storedWishlist));
     }
   }, []);
 
-  // 로컬 스토리지에 위시리스트 저장
+  // 위시리스트 변경 시 로컬스토리지에 저장
   useEffect(() => {
-    localStorage.setItem('movieWishlist', JSON.stringify(state.wishlist));
-  }, [state.wishlist]);
+    localStorage.setItem('movieWishlist', JSON.stringify(wishlist));
+  }, [wishlist]);
+
+  // 위시리스트에 영화 추가/제거
+  const toggleWishlist = (movie: Movie) => {
+    setWishlist((prevWishlist) => {
+      const isMovieInWishlist = prevWishlist.some((item) => item.id === movie.id);
+
+      if (isMovieInWishlist) {
+        return prevWishlist.filter((item) => item.id !== movie.id); // 이미 있다면 제거
+      } else {
+        return [...prevWishlist, movie]; // 없으면 추가
+      }
+    });
+  };
+
+  // 영화가 위시리스트에 있는지 확인
+  const isInWishlist = (movieId: number) => {
+    return wishlist.some((item) => item.id === movieId);
+  };
 
   return (
-    <WishlistContext.Provider value={{ state, dispatch }}>
+    <WishlistContext.Provider value={{ wishlist, toggleWishlist, isInWishlist }}>
       {children}
     </WishlistContext.Provider>
   );
 };
 
-// Hook을 통해 Context 사용
+// Custom hook: useWishlist
 export const useWishlist = () => {
   const context = useContext(WishlistContext);
   if (!context) {

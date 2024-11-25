@@ -1,31 +1,33 @@
 import React from 'react';
-
 import { useWishlist } from '../context/WishContext';
-const MovieCard = ({ movie }: { movie: { id: number; title: string } }) => {
-  const { state, dispatch } = useWishlist();
-  
-  // 위시리스트에 포함 여부 확인
-  const isInWishlist = state.wishlist.some((item) => item.id === movie.id);
 
-  // 위시리스트 토글 함수
-  const toggleWishlist = () => {
-    if (isInWishlist) {
-      dispatch({ type: 'REMOVE_FROM_WISHLIST', movieId: movie.id });
-    } else {
-      dispatch({ type: 'ADD_TO_WISHLIST', movie });
-    }
+interface Movie {
+  id: number;
+  title: string;
+  overview: string;
+  posterPath: string;
+}
+
+const MovieCard = ({ movie }: { movie: Movie }) => {
+  const { toggleWishlist, isInWishlist } = useWishlist();
+
+  // 위시리스트에 포함 여부 확인
+  const inWishlist = isInWishlist(movie.id);
+
+  // 버튼 클릭 시 위시리스트 토글
+  const handleWishlistToggle = () => {
+    toggleWishlist(movie);
   };
 
   return (
-    <div> 
-        <h3>
-            {movie.title}
-        </h3>
-        <button onClick={toggleWishlist}>
-            {isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
-        </button>
+    <div className="movie-card">
+      <h3>{movie.title}</h3>
+      <button onClick={handleWishlistToggle}>
+        {inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
+      </button>
     </div>
   );
 };
 
 export default MovieCard;
+

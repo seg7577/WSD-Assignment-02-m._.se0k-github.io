@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-// Movie 타입 정의 (프로젝트에 맞게 수정)
+// Movie 타입 정의
 export interface Movie {
   id: number;
   title: string;
@@ -8,7 +8,7 @@ export interface Movie {
   posterPath: string;
 }
 
-// WishlistContext에서 사용할 타입
+// WishlistContext에서 사용할 타입 정의
 interface WishlistContextType {
   wishlist: Movie[];
   toggleWishlist: (movie: Movie) => void;
@@ -22,7 +22,7 @@ const WishlistContext = createContext<WishlistContextType | undefined>(undefined
 export const WishlistProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [wishlist, setWishlist] = useState<Movie[]>([]);
 
-  // 초기 로드: 로컬스토리지에서 위시리스트 가져오기
+  // 로컬스토리지에서 위시리스트 가져오기
   useEffect(() => {
     const storedWishlist = localStorage.getItem('movieWishlist');
     if (storedWishlist) {
