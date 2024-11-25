@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import MovieSearch from '../../movie-search/MovieSearch'; // 검색 필터링 컴포넌트
-import MovieInfiniteScroll from '../../movie-infinite-scroll/MovieInfiniteScroll'; // 무한 스크롤 컴포넌트
-import './HomeSearch.css'; // 스타일링 파일
+import MovieSearch from '../../movie-search/MovieSearch';
+import MovieInfiniteScroll from '../../movie-infinite-scroll/MovieInfiniteScroll';
+import './HomeSearch.css';
 
 const HomeSearch = () => {
   const BASE_URL = 'https://api.themoviedb.org/3';
 
   const [options, setOptions] = useState({
-    genreId: '', // 선택된 장르 ID
-    sortId: '', // 선택된 정렬 ID
-    ageId: 0, // 선택된 연령 제한 (0: 전체 관람가)
+    genreId: '',
+    sortId: '',
+    ageId: 0,
   });
 
   const [wishlist, setWishlist] = useState<number[]>(() => {
@@ -17,8 +17,8 @@ const HomeSearch = () => {
     return storedWishlist ? JSON.parse(storedWishlist) : [];
   });
 
-  const [fetchUrl, setFetchUrl] = useState<string>(''); // API URL 상태
-  const [password, setPassword] = useState<string>(''); // TMDB API Key
+  const [fetchUrl, setFetchUrl] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   // 로컬 스토리지에서 API Key 가져오기
   useEffect(() => {
@@ -28,15 +28,18 @@ const HomeSearch = () => {
     }
   }, []);
 
-  // 페이지 최초 렌더링 시 기본 API 호출
+  // API 기본 URL 생성
+  const getDefaultUrl = () =>
+    `${BASE_URL}/discover/movie?api_key=${encodeURIComponent(password)}&page=1`;
+
+  // 페이지 최초 렌더링 시 기본 영화 리스트 로드
   useEffect(() => {
     if (password) {
-      const defaultUrl = `${BASE_URL}/discover/movie?api_key=${encodeURIComponent(password)}&page=1`;
-      setFetchUrl(defaultUrl);
+      setFetchUrl(getDefaultUrl());
     }
   }, [password]);
 
-  // 드롭다운 옵션 변경 시 API 호출 URL 업데이트
+  // 옵션 변경 시 API URL 업데이트
   useEffect(() => {
     if (password) {
       const genreParam = options.genreId ? `&with_genres=${options.genreId}` : '';
@@ -74,10 +77,13 @@ const HomeSearch = () => {
       ...prev,
       [key]: key === 'ageId' ? parseInt(value, 10) : value,
     }));
+    document.documentElement.scrollTo({ top: 0, behavior: 'smooth' }); // 드롭다운 변경 시 맨 위로 스크롤
   };
 
   const clearOptions = () => {
     setOptions({ genreId: '', sortId: '', ageId: 0 });
+    setFetchUrl(getDefaultUrl()); // 기본 API URL로 재설정
+    document.documentElement.scrollTo({ top: 0, behavior: 'smooth' }); // 초기화 시 맨 위로 스크롤
   };
 
   const toggleWishlist = (movie: { id: number }) => {
@@ -95,7 +101,6 @@ const HomeSearch = () => {
 
   return (
     <div className="container-search">
-      {/* 검색 및 필터링 UI */}
       <div className="container-search-bar">
         <MovieSearch
           dropdownEntries={dropdownEntries}
@@ -103,14 +108,13 @@ const HomeSearch = () => {
           onClearOptions={clearOptions}
         />
       </div>
-      {/* 필터링된 영화 목록 */}
       <div className="content-search">
         {fetchUrl && (
           <MovieInfiniteScroll
-            fetchUrl={fetchUrl} // API URL 전달
-            getImageUrl={(path) => `https://image.tmdb.org/t/p/w500/${path}`} // 포스터 이미지 생성 함수
-            toggleWishlist={toggleWishlist} // Wishlist 토글 함수 전달
-            isInWishlist={isInWishlist} // Wishlist 상태 확인 함수 전달
+            fetchUrl={fetchUrl}
+            getImageUrl={(path) => `https://image.tmdb.org/t/p/w500/${path}`}
+            toggleWishlist={toggleWishlist}
+            isInWishlist={isInWishlist}
           />
         )}
       </div>

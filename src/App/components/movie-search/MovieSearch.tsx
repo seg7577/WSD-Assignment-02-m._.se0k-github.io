@@ -1,25 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './MovieSearch.css';
 
-const MovieSearch = ({
-  dropdownEntries,
-  onOptionSelect,
-  onClearOptions,
-}: {
-  dropdownEntries: Array<{
-    key: string;
-    options: Array<{ id: string; name: string }> | string[];
-  }>;
+interface DropdownEntry {
+  key: string;
+  options: Array<{ id: string; name: string }> | string[];
+}
+
+interface MovieSearchProps {
+  dropdownEntries: DropdownEntry[];
   onOptionSelect: (key: string, value: string) => void;
   onClearOptions: () => void;
-}) => {
+}
+
+const MovieSearch = ({ dropdownEntries, onOptionSelect, onClearOptions }: MovieSearchProps) => {
   const [selectedOptions, setSelectedOptions] = useState<{ [key: string]: string }>({});
 
-  const handleSelect = (key: string, option: string) => {
-    console.log(`Selected key: ${key}, value: ${option}`); // Debugging
-    setSelectedOptions((prev) => ({ ...prev, [key]: option })); // 업데이트
-    onOptionSelect(key, option); // 부모로 전달
+  // 드롭다운 초기화 함수
+  const clearDropdowns = () => {
+    const initialOptions: { [key: string]: string } = {};
+    dropdownEntries.forEach((entry) => {
+      initialOptions[entry.key] = '';
+    });
+    setSelectedOptions(initialOptions);
   };
+
+  // 초기화 버튼 클릭 시 드롭다운 초기화
+  const handleClearOptions = () => {
+    clearDropdowns();
+    onClearOptions();
+  };
+
+  const handleSelect = (key: string, option: string) => {
+    setSelectedOptions((prev) => ({ ...prev, [key]: option }));
+    onOptionSelect(key, option);
+  };
+
+  useEffect(() => {
+    clearDropdowns(); // 초기 렌더링 시 드롭다운 초기화
+  }, [dropdownEntries]);
 
   return (
     <div className="dropdown-container">
@@ -48,12 +66,11 @@ const MovieSearch = ({
           </select>
         </div>
       ))}
-      <button className="clear-options" onClick={onClearOptions}>
+      <button className="clear-options" onClick={handleClearOptions}>
         초기화
       </button>
     </div>
   );
 };
-
 
 export default MovieSearch;
