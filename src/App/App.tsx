@@ -9,8 +9,8 @@ import SignIn from './components/sign-in/SignIn';
 import PrivateRoute from './privateRoute'; // PrivateRoute 컴포넌트
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { AuthProvider } from './context/AuthContext';
-import ToastContainer from './components/toast/ToastContainer';
-import MovieWishlist from './components/movie-wishlist/MovieWishlist';
+import ToastContainer from './components/layout/toast/ToastContainer';
+import MovieWishlist from './components/\bmovie/movie-wishlist/MovieWishlist';
 import HomeSearch from './components/home/search/HomeSearch';
 
 const App = () => {

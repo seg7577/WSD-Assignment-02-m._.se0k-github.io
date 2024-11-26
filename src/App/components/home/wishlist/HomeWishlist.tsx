@@ -1,4 +1,4 @@
-import MovieWishlist from '../../movie-wishlist/MovieWishlist';
+import MovieWishlist from '../../\bmovie/movie-wishlist/MovieWishlist';
 import React, { useEffect, useState } from 'react';
 import './HomeWishlist.css'; // Wishlist 스타일 추가
 import { useAuth } from '../../../context/AuthContext';

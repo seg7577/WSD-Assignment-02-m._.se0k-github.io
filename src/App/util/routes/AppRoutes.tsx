@@ -1,12 +1,11 @@
 import React from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import Home from '../components/home/Home';
-import HomeMain from '../components/home/main/HomeMain';
-// import HomeWishlist from '../components/home/wishlist/HomeWishlist';
-import HomePopular from '../components/home/popular/HomePopular';
-import SignIn from '../components/sign-in/SignIn';
-import { useAuth } from '../context/AuthContext';
-import MovieWishlist from '../components/movie-wishlist/MovieWishlist';
+import Home from '../../components/home/Home';
+import HomeMain from '../../components/home/main/HomeMain';
+import HomePopular from '../../components/home/popular/HomePopular';
+import SignIn from '../../components/sign-in/SignIn'
+import { useAuth } from '../../context/AuthContext';
+import MovieWishlist from '../../components/\bmovie/movie-wishlist/MovieWishlist';
 
 // AuthGuard 컴포넌트: 인증 상태에 따라 접근 제어하는 것.
 const AuthGuard: React.FC = () => {

@@ -1,6 +1,6 @@
 import React, { useState,useContext } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import { ToastContext } from '../toast/ToastContainer';
+import { ToastContext } from '../layout/toast/ToastContainer';
 import './SignIn.css';
 import { useNavigate } from 'react-router-dom';
 import { AuthService } from '../../util/auth/authService'; // AuthService를 가져옵니다.

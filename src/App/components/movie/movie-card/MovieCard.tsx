@@ -1,5 +1,5 @@
 import React from 'react';
-import { useWishlist } from '../context/WishContext';
+import { useWishlist } from '../../../context/WishContext';
 
 interface Movie {
   id: number;

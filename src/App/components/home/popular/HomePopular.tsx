@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import MovieGrid from '../../movie-grid/MovieGrid';
-import MovieInfiniteScroll from '../../movie-infinite-scroll/MovieInfiniteScroll';
+import MovieGrid from '../../\bmovie/movie-grid/MovieGrid';
+import MovieInfiniteScroll from '../../\bmovie/movie-infinite-scroll/MovieInfiniteScroll';
 import { useAuth } from '../../../context/AuthContext';
 
 import './HomePopular.css';
