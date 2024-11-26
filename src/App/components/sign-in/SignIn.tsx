@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { ToastContext } from '../layout/toast/ToastContainer';
 import './SignIn.css';
@@ -26,6 +26,17 @@ const Auth = () => {
 
   const toastContext = useContext(ToastContext);
 
+  // RememberMe 상태를 로컬 스토리지에서 로드
+  useEffect(() => {
+    const storedEmail = localStorage.getItem('rememberMeEmail');
+    const storedPassword = localStorage.getItem('rememberMePassword');
+    if (storedEmail && storedPassword) {
+      setEmail(storedEmail);
+      setPassword(storedPassword);
+      setRememberMe(true);
+    }
+  }, []);
+
   // 로그인 핸들러
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -34,12 +45,20 @@ const Auth = () => {
 
     try {
       await login(email, password); // AuthContext의 login 함수 호출
+
+      // RememberMe 체크 상태에 따라 이메일/비밀번호 저장 또는 제거
+      if (rememberMe) {
+        localStorage.setItem('rememberMeEmail', email);
+        localStorage.setItem('rememberMePassword', password);
+      } else {
+        localStorage.removeItem('rememberMeEmail');
+        localStorage.removeItem('rememberMePassword');
+      }
+
       toastContext?.addToast('로그인 성공!', 'success'); // 성공 메시지
-      alert('로그인 성공!');
       navigate('/'); // 로그인 성공 시 메인 페이지로 이동
     } catch (err) {
       toastContext?.addToast('로그인 실패: 이메일 또는 비밀번호를 확인하세요.', 'error'); // 실패 메시지
-      alert('로그인 실패!');
       setError('Invalid email or password. Please try again.');
     } finally {
       setIsLoading(false);
@@ -56,7 +75,6 @@ const Auth = () => {
       setError('Passwords do not match.');
       setIsLoading(false);
       toastContext?.addToast('비밀번호가 일치하지 않습니다.', 'error');
-      alert('비밀번호가 일치하지 않습니다.');
       return;
     }
 
@@ -69,12 +87,9 @@ const Auth = () => {
     try {
       await AuthService.tryRegister(email, password); // AuthService 회원가입 메서드 호출
       toastContext?.addToast('회원가입 성공!', 'success'); // 성공 메시지
-      console.log('Registration successful:', email);
-      alert('회원가입 성공!');
       setIsSignIn(true); // 회원가입 성공 후 로그인 화면으로 전환
     } catch (err) {
       toastContext?.addToast('회원가입 실패: 이미 존재하는 이메일입니다.', 'error'); // 실패 메시지
-      alert('회원가입 실패: 이미 존재하는 이메일입니다.');
       setError('Registration failed: Email already exists.');
     } finally {
       setIsLoading(false);
