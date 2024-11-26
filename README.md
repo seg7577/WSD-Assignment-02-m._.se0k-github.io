@@ -1,8 +1,12 @@
-# M_SE0K-MOVIE[https://seg7577.github.io/WSD-Assignment-02-m._.se0k-github.io/]
+# [M_SE0K-MOVIE](https://seg7577.github.io/WSD-Assignment-02-m._.se0k-github.io/)
 ---
 ## 프로젝트 기술 스택
 React
+
+
 FontAwesome
+
+
 TMDB API
 ---
 ## branch
