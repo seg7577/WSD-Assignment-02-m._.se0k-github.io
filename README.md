@@ -8,6 +8,8 @@ FontAwesome
 
 
 TMDB API
+
+
 ---
 ## branch
 master: 제품 출시 버전을 관리하는 메인 브랜치
@@ -17,6 +19,8 @@ develop: 다음 출시 버전을 위해 개발하는 브랜치
 
 
 feature/브랜치: 새로운 기능을 개발하는 브랜치
+
+
 ---
 ## 프로젝트 구조
 ```
