@@ -9,7 +9,7 @@
   align-items: flex-end; /* 플렉스 아이템을 컨테이너 하단에 정렬 */
   margin-top: 300px; /* 상단 여백 추가 */
   
-  
+  overflow-x: hidden;
 }
 
 .banner-content {
@@ -20,6 +20,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  overflow-x: hidden;
 }
 
 .banner h1 {

@@ -56,8 +56,8 @@ const Banner: React.FC = () => {
   return (
     <div className="banner"
       style={{
-        height: '60vh', // 화면 높이의 60%
-        maxWidth: '95vw', // 뷰포트 너비의 95%
+        height: '40vh', // 화면 높이의 60%
+        maxWidth: '100vw', // 뷰포트 너비의 95%
         backgroundImage: `url(https://image.tmdb.org/t/p/original${featuredMovie.backdrop_path})`, // 동적으로 배경 이미지 설정
         backgroundSize: 'cover', // 배경 이미지 크기
         backgroundPosition: 'center', // 배경 이미지 위치

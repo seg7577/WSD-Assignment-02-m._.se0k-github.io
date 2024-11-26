@@ -25,21 +25,34 @@ const HomeMain = () => {
     return <div>Error: API key is missing.</div>;
   }
 
-  // 동적으로 URL을 생성하는 함수
-  const createApiUrl = (endpoint: string, params: Record<string, any> = {}) => {
-    const baseUrl = 'https://api.themoviedb.org/3';
-    const queryParams = new URLSearchParams({
-      api_key: user.password, // 사용자 API 키를 동적으로 추가
-      language: 'ko-KR',
-      ...params, // 추가 파라미터 병합
-    });
+// 동적으로 URL을 생성하는 함수
+const createApiUrl = (endpoint: string, params: Record<string, any> = {}) => {
+  const baseUrl = 'https://api.themoviedb.org/3';
+  const queryParams = new URLSearchParams({
+    api_key: user.password, // 사용자 API 키를 동적으로 추가
+    language: 'ko-KR', // 기본 언어를 한국어로 설정
+    ...params, // 추가 파라미터 병합
+  });
 
-    return `${baseUrl}/${endpoint}?${queryParams.toString()}`;
-  };
+  return `${baseUrl}/${endpoint}?${queryParams.toString()}`;
+};
 
-  const popularMoviesUrl = createApiUrl('movie/popular');
-  const newReleasesUrl = createApiUrl('movie/now_playing');
-  const actionMoviesUrl = createApiUrl('discover/movie', { with_genres: '28' });
+// 1. 현재 한국에서 인기 있는 영화
+const popularMoviesInKoreaUrl = createApiUrl('movie/popular', { region: 'KR' });
+
+// 2. 현재 전 세계에서 인기 있는 영화
+const popularMoviesGlobalUrl = createApiUrl('movie/popular', { language: 'en-US' });
+
+// 3. 최신 영화
+const latestMoviesUrl = createApiUrl('movie/now_playing', { region: 'KR' });
+
+// 4. 넷플릭스에서 인기 있는 영화
+const popularOnNetflixUrl = createApiUrl('discover/movie', {
+  region: 'KR',
+  sort_by: 'popularity.desc',
+  with_watch_providers: '8', // 넷플릭스 제공자 ID
+  watch_region: 'KR', // 한국 지역 넷플릭스
+});
 
   // 이미지 URL 생성 함수
   const getImageUrl = (path: string) =>
@@ -71,30 +84,38 @@ const HomeMain = () => {
       {/* 영화 슬라이더 컴포넌트 */}
       {/* 인기 영화 슬라이더 */}
       <MovieRow
-        title="인기 영화" // 섹션 제목: '인기 영화'
-        fetchUrl={popularMoviesUrl} // 인기 영화를 가져오는 API URL
+        title="현재 한국에서 인기 있는 영화" // 섹션 제목: '인기 영화'
+        fetchUrl={popularMoviesInKoreaUrl} // 인기 영화를 가져오는 API URL
+        getImageUrl={getImageUrl} // 영화 이미지 URL을 생성하는 함수
+        toggleWishlist={toggleWishlist} // 위시리스트에 추가/제거하는 함수
+        isInWishlist={isInWishlist} // 영화가 위시리스트에 있는지 확인하는 함수
+      />
+      {/* 액션 영화 슬라이더 */}
+      <MovieRow
+        title="현재 전 세계에서 인기 있는 영화" // 섹션 제목: '액션 영화'
+        fetchUrl={popularMoviesGlobalUrl} // 액션 영화를 가져오는 API URL
         getImageUrl={getImageUrl} // 영화 이미지 URL을 생성하는 함수
         toggleWishlist={toggleWishlist} // 위시리스트에 추가/제거하는 함수
         isInWishlist={isInWishlist} // 영화가 위시리스트에 있는지 확인하는 함수
       />
 
+      {/*  영화 슬라이더 */}
+      <MovieRow
+        title="넷플릭스에서 인기 있는 영화" // 섹션 제목: '음악 영화'
+        fetchUrl={popularOnNetflixUrl} // 음악 영화를 가져오는 API URL
+        getImageUrl={getImageUrl} // 영화 이미지 URL을 생성하는 함수
+        toggleWishlist={toggleWishlist} // 위시리스트에 추가/제거하는 함수
+        isInWishlist={isInWishlist} // 영화가 위시리스트에 있는지 확인하는 함수
+      />
       {/* 최신 영화 슬라이더 */}
       <MovieRow
         title="최신 영화" // 섹션 제목: '최신 영화'
-        fetchUrl={newReleasesUrl} // 최신 영화를 가져오는 API URL
+        fetchUrl={latestMoviesUrl} // 최신 영화를 가져오는 API URL
         getImageUrl={getImageUrl} // 영화 이미지 URL을 생성하는 함수
         toggleWishlist={toggleWishlist} // 위시리스트에 추가/제거하는 함수
         isInWishlist={isInWishlist} // 영화가 위시리스트에 있는지 확인하는 함수
       />
 
-      {/* 액션 영화 슬라이더 */}
-      <MovieRow
-        title="액션 영화" // 섹션 제목: '액션 영화'
-        fetchUrl={actionMoviesUrl} // 액션 영화를 가져오는 API URL
-        getImageUrl={getImageUrl} // 영화 이미지 URL을 생성하는 함수
-        toggleWishlist={toggleWishlist} // 위시리스트에 추가/제거하는 함수
-        isInWishlist={isInWishlist} // 영화가 위시리스트에 있는지 확인하는 함수
-      />
     </div>
   );
 };
