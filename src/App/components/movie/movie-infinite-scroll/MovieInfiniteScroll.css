@@ -137,19 +137,28 @@
   }
   
   @media (max-width: 768px) {
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개씩 */
+      gap: 10px; /* 카드 간격 */
+      width: 100%; /* 화면 너비에 맞춤 */
+      padding: 10px; /* 내부 여백 */
+    }
+  
     .movie-card {
-      width: 120px;
-      margin: 0 5px;
+      width: 100%; /* 부모 그리드 셀의 크기에 맞춤 */
+      margin: 0; /* 카드 간격은 grid-container의 gap으로 조정 */
     }
   
     .movie-title {
-      font-size: 12px;
+      font-size: 12px; /* 텍스트 크기 줄이기 */
+      margin-top: 5px; /* 제목 위 여백 줄이기 */
     }
   
     .wishlist-indicator {
-      font-size: 20px;
-      top: -5px;
-      right: -5px;
+      font-size: 14px; /* 아이콘 크기 조정 */
+      top: 5px; /* 위치 조정 */
+      right: 5px;
     }
   
     .top-button {
@@ -162,4 +171,5 @@
       font-size: 14px;
     }
   }
+  
   

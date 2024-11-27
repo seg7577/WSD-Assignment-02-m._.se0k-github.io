@@ -117,12 +117,12 @@ WAS-ASSiGNMENT-02/
 ### 프로젝트 설치 설정
 `npm install`
 
+### 프로덕션 빌드
+`npm run build`
+
 ### 개발 서버 실행 및 핫 리로드
 `npm start`
 애플리케이션을 개발 모드로 실행합니다.
 브라우저에서 http://localhost:3000/WSD-Assignment-02-m._.se0k-github.io/을 열어 확인할 수 있습니다.
 수정 사항을 저장하면 페이지가 자동으로 새로고침됩니다.
-
-### 프로덕션 빌드
-`npm run build`
 

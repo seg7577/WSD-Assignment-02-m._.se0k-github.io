@@ -38,7 +38,13 @@
   
   @media (max-width: 768px) {
     .view-toggle {
-      margin-top: 80px;
+      margin: 10px; /* 모바일 화면에서 외부 여백 축소 */
+      top: 60px; /* 헤더 아래 위치 조정 */
+    }
+  
+    .view-toggle button {
+      padding: 8px 12px; /* 버튼 크기 축소 */
+      font-size: 14px; /* 버튼 텍스트 크기 축소 */
     }
   }
   
