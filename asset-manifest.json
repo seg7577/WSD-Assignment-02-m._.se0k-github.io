@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.f6a2b875.css",
+    "main.css": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.bd26cc2a.css",
     "main.js": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.9e8b53f4.js",
     "static/js/453.56d75c98.chunk.js": "/WSD-Assignment-02-m._.se0k-github.io/static/js/453.56d75c98.chunk.js",
     "static/media/fa-solid-900.ttf": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-solid-900.07ed6d5fa32c1d54af0f.ttf",
@@ -12,12 +12,12 @@
     "static/media/fa-v4compatibility.ttf": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-v4compatibility.0f6cb412603527bda691.ttf",
     "static/media/fa-v4compatibility.woff2": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-v4compatibility.6cfec8414be20e2c3426.woff2",
     "index.html": "/WSD-Assignment-02-m._.se0k-github.io/index.html",
-    "main.f6a2b875.css.map": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.f6a2b875.css.map",
+    "main.bd26cc2a.css.map": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.bd26cc2a.css.map",
     "main.9e8b53f4.js.map": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.9e8b53f4.js.map",
     "453.56d75c98.chunk.js.map": "/WSD-Assignment-02-m._.se0k-github.io/static/js/453.56d75c98.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f6a2b875.css",
+    "static/css/main.bd26cc2a.css",
     "static/js/main.9e8b53f4.js"
   ]
 }
