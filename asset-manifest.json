@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.dd3eaea9.css",
-    "main.js": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.066c0474.js",
+    "main.js": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.3234cd52.js",
     "static/js/453.56d75c98.chunk.js": "/WSD-Assignment-02-m._.se0k-github.io/static/js/453.56d75c98.chunk.js",
     "static/media/fa-solid-900.ttf": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-solid-900.07ed6d5fa32c1d54af0f.ttf",
     "static/media/fa-brands-400.ttf": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-brands-400.0ff70dcbf135d859ebf3.ttf",
@@ -13,11 +13,11 @@
     "static/media/fa-v4compatibility.woff2": "/WSD-Assignment-02-m._.se0k-github.io/static/media/fa-v4compatibility.6cfec8414be20e2c3426.woff2",
     "index.html": "/WSD-Assignment-02-m._.se0k-github.io/index.html",
     "main.dd3eaea9.css.map": "/WSD-Assignment-02-m._.se0k-github.io/static/css/main.dd3eaea9.css.map",
-    "main.066c0474.js.map": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.066c0474.js.map",
+    "main.3234cd52.js.map": "/WSD-Assignment-02-m._.se0k-github.io/static/js/main.3234cd52.js.map",
     "453.56d75c98.chunk.js.map": "/WSD-Assignment-02-m._.se0k-github.io/static/js/453.56d75c98.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dd3eaea9.css",
-    "static/js/main.066c0474.js"
+    "static/js/main.3234cd52.js"
   ]
 }
